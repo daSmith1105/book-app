@@ -3,15 +3,20 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "node app.js"
+        "start": "node app.js",
+        "test": "mocha --exit"
     },
     "dependencies": {
+        "chai": "^4.1.2",
+        "chai-http": "^4.0.0",
         "cookie-parser": "~1.4.3",
         "debug": "~2.6.9",
         "express": "^4.16.3",
+        "faker": "^4.1.0",
         "http-errors": "~1.6.2",
         "jade": "~1.11.0",
         "method-override": "^2.3.10",
+        "mocha": "^5.1.1",
         "mongo": "^0.1.0",
         "mongodb": "^3.1.0-beta4",
         "mongoose": "^5.1.0",
