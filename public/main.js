@@ -1,125 +1,26 @@
 'use strict'
 
-// testing data only
+const LOCAL_API_URL = 'http://localhost:8080/books';
+const LOCAL_API_URL_2 = 'http://localhost:8080/books/';
+const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 
-var MOCK_BOOK_LIST = {
-    "books": [{
-            "id": "1111111",
-            "title": "Going Broke",
-            "author": {
-                "firstName": "Author",
-                "lastName": "Name"
-            },
-            "image": "http://www.creativindiecovers.com/wp-content/uploads/2013/08/8finance.jpg",
-            "created": 1470016976609
-        },
-        {
-            "id": "1111112",
-            "title": "Animal Farm",
-            "author": {
-                "firstName": "George",
-                "lastName": "Orwell"
-            },
-            "image": "https://battleroyalewithcheese.com/wp-content/uploads/2016/05/9780143416319.jpg",
-            "created": 1570016976609
-        },
-        {
-            "id": "1111113",
-            "title": "To Kill a Mockingbird",
-            "author": {
-                "firstName": "Harper",
-                "lastName": "Lee"
-            },
-            "image": "https://media.glamour.com/photos/56e1f3c462b398fa64cbd304/master/w_1280,c_limit/entertainment-2016-02-18-main.jpg",
-            "created": 1670016976609
-        },
-        {
-            "id": "1111114",
-            "title": "This Way Up",
-            "author": {
-                "firstName": "Paige",
-                "lastName": "Nick"
-            },
-            "image": "http://3.bp.blogspot.com/-KMV1i4g_Cj4/TrOA9YrTLgI/AAAAAAAAAo8/X6yyVhkM5K0/s1600/9780143527558.jpg",
-            "created": 1770016976609
-        },
-        {
-            "id": "1111113",
-            "title": "To Kill a Mockingbird",
-            "author": {
-                "firstName": "Harper",
-                "lastName": "Lee"
-            },
-            "image": "https://media.glamour.com/photos/56e1f3c462b398fa64cbd304/master/w_1280,c_limit/entertainment-2016-02-18-main.jpg",
-            "created": 1670016976609
-        },
-        {
-            "id": "1111114",
-            "title": "This Way Up",
-            "author": {
-                "firstName": "Paige",
-                "lastName": "Nick"
-            },
-            "image": "http://3.bp.blogspot.com/-KMV1i4g_Cj4/TrOA9YrTLgI/AAAAAAAAAo8/X6yyVhkM5K0/s1600/9780143527558.jpg",
-            "created": 1770016976609
-        },
-        {
-            "id": "1111112",
-            "title": "Animal Farm",
-            "author": {
-                "firstName": "George",
-                "lastName": "Orwell"
-            },
-            "image": "https://battleroyalewithcheese.com/wp-content/uploads/2016/05/9780143416319.jpg",
-            "created": 1570016976609
-        },
-        {
-            "id": "1111111",
-            "title": "Going Broke",
-            "author": {
-                "firstName": "Author",
-                "lastName": "Name"
-            },
-            "image": "http://www.creativindiecovers.com/wp-content/uploads/2013/08/8finance.jpg",
-            "created": 1470016976609
-        }
-    ]
-};
-
-function getBooks(callbackFn) {
-    setTimeout(function() { callbackFn(MOCK_BOOK_LIST) }, 1000);
-}
-
-// this function stays the same when we connect
-// to real API later
-function displayBookList(data) {
-    for (let index in data.books) {
-        $('.book-list').append(
-            `<div class="book">
+//CRUD operations
+function getAllBooks() {
+    $.getJSON(LOCAL_API_URL, function(data) {
+        for (let index in data) {
+            $('.book-list').append(
+                `<div class="book" id=${data[index].id}>
             <div class="edit-btn"><button type="button"></button></div>
             <div class="del-btn"><button type="button"></button></div>
-            <div class="book-img"><img src=${data.books[index].image}></div>
+            <div class="book-img"><img src=${data[index].image}></div>
             <div class="book-info">
-                <p class="book-title">${data.books[index].title}</p>
-                <p class="author">${data.books[index].author.firstName} ${data.books[index].author.lastName}</p>
+                <p class="book-title">${data[index].title}</p>
+                <p class="author">${data[index].author}</p>
             </div>
         </div>`);
-    }
+        };
+    });
 }
-
-// this function can stay the same even when we
-// are connecting to real API
-function getAndDisplayBooks() {
-    getBooks(displayBookList);
-}
-
-$(function() {
-    getAndDisplayBooks();
-})
-
-//end test data
-
-
 
 function addButtonHandler() {
     $('.js-add').on('click', function() {
@@ -151,22 +52,74 @@ function handleEditBook() {
 function handleNewBook() {
     $('.js-input-form').on('submit', function(event) {
         event.preventDefault();
-        alert('book submitted');
+        const titleInput = $(event.currentTarget).find('.js-title-input');
+        const fNameInput = $(event.currentTarget).find('.js-fName-input');
+        const lNameInput = $(event.currentTarget).find('.js-lName-input');
+        const imageInput = $(event.currentTarget).find('.js-image-input');
+        let title = titleInput.val();
+        let fName = fNameInput.val();
+        let lName = lNameInput.val();
+        let image = imageInput.val();
+        titleInput.val('');
+        fNameInput.val('');
+        lNameInput.val('');
+        imageInput.val('');
+
+        let bookObj = {
+            "title": `${title}`,
+            "image": `${image}`,
+            "author": {
+                "firstName": `${fName}`,
+                "lastName": `${lName}`
+            }
+        };
+
+        $.ajax({
+            url: LOCAL_API_URL,
+            type: "POST",
+            data: JSON.stringify(bookObj),
+            contentType: "application/json",
+            complete: $('.book-list').append(
+                `<div class="book">
+                        <div class="edit-btn"><button type="button"></button></div>
+                        <div class="del-btn"><button type="button"></button></div>
+                        <div class="book-img"><img src=${image}></div>
+                        <div class="book-info">
+                            <p class="book-title">${title}</p>
+                            <p class="author">${fName} ${lName}</p>
+                        </div>
+                    </div>`)
+        });
         $('.data-input-modal').addClass('hide');
-    });
+    })
 }
 
+$(".closethis").click(function() {
+    var $this = $(this).parent().parent();
+    if ($this.attr("id") == "mainArea") {
+        $("#myTbl").removeClass("myClass");
+    }
+});
 
 function deletButtonHandler() {
-    $(document).on('click', '.del-btn', function() {
-        this.closest('.book').remove();
-    });
+    $(document).on('click', '.del-btn', function(event) {
+        const $this = $(this).parent();
+        const targetId = $this.attr("id");
+        console.log(targetId);
+        $.ajax({
+            url: LOCAL_API_URL + '/' + targetId,
+            type: 'DELETE',
+            data: targetId,
+            complete: this.closest('.book').remove()
+        });
+    })
     $('.cancel-btn').on('click', function() {
         $('.data-change-modal').addClass('hide');
     });
 }
 
 function appLoad() {
+    $(getAllBooks);
     $(addButtonHandler);
     $(editButtonHandler);
     $(deletButtonHandler);

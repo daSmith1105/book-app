@@ -12,73 +12,74 @@
 </head>
 
 <body>
-    <section role="region" class="landing">
-        <!-- Home page add book-->
-        <div class='grid-container'>
-            <div class="logo-container">
-                <h1 class="app-name">Wishful Reading</h1>
-                <img class="logo" src="https://image.freepik.com/free-icon/man-reading_318-59223.jpg" alt="man reading">
+    <div class="fixed-background">
+        <section role="region" class="landing">
+            <!-- Home page add book-->
+            <div class='grid-container'>
+                <div class="logo-container">
+                    <h1 class="app-name">Wishful Reading</h1>
+                    <img class="logo" src="https://image.freepik.com/free-icon/man-reading_318-59223.jpg" alt="man reading">
+                </div>
+                <p class="add-prompt">Add a book you would like to read to your Wishful Reading list</p>
+                <button type="submit" class="add-btn js-add">ADD A BOOK</button>
             </div>
-            <p class="add-prompt">Add a book you would like to read to your Wishful Reading list</p>
-            <button type="submit" class="add-btn js-add">ADD A BOOK</button>
+        </section>
+
+        <div class="book-list grid-books" aria-live="assertive"></div>
+
+
+        <div class="data-input-modal hide">
+            <form class="js-input-form grid-form" action="#">
+                <button type="button" class="close-btn"></button>
+                <h1 class="form-header">Add a New Book to Your Wishlist</h1>
+                <fieldset>
+                    <legend>Book Title</legend>
+                    <label for="title" class="title-label">Title:</label>
+                    <input class="js-title-input title-input" name="title" required>
+                </fieldset>
+                <fieldset class="author-fieldset">
+                    <legend>Author</legend>
+                    <label for="fName" class="fName-label">First:</label>
+                    <input class="js-fName-input fName-input" name="fName" required>
+                    <br><br>
+                    <label for="lName">Last:</label>
+                    <input class=" js-lName-input lName-input " name="lName" required>
+                </fieldset>
+                <fieldset>
+                    <legend>Add a cover image</legend>
+                    <input type="file" class="js-image-input image-input" name="image">
+                    <br>
+                </fieldset>
+                <button class="add-book-btn" type="submit">Add This Book</button>
+            </form>
         </div>
-    </section>
 
-    <div class="book-list grid-books" aria-live="assertive"></div>
-
-
-    <div class="data-input-modal hide">
-        <form class="js-input-form grid-form" action="#">
-            <button type="button" class="close-btn"></button>
-            <h1 class="form-header">Add a New Book to Your Wishlist</h1>
-            <fieldset>
-                <legend>Book Title</legend>
-                <label for="title" class="title-label">Title:</label>
-                <input class="js-title-input title-input" name="title" required>
-            </fieldset>
-            <fieldset class="author-fieldset">
-                <legend>Author</legend>
-                <label for="fName" class="fName-label">First:</label>
-                <input class="js-fName-input fName-input" name="fName" required>
-                <br><br>
-                <label for="lName">Last:</label>
-                <input class=" js-lName-input lName-input " name="lName" required>
-            </fieldset>
-            <fieldset>
-                <legend>Add a cover image</legend>
-                <input type="file" class="js-image-input image-input" name="image">
-                <br>
-            </fieldset>
-            <button class="add-book-btn" type="submit">Add This Book</button>
-        </form>
+        <div class="data-modify-modal hide">
+            <form class="js-edit-form grid-form" action="#">
+                <button type="button" class="close-mod-btn"></button>
+                <h1 class="form-header">Modify this Book in Your Wishlist</h1>
+                <fieldset>
+                    <legend>Book Title</legend>
+                    <label for="title" class="title-label">Title:</label>
+                    <input class="js-title-input title-input" name="title">
+                </fieldset>
+                <fieldset class="author-fieldset">
+                    <legend>Author</legend>
+                    <label for="fName" class="fName-label">First:</label>
+                    <input class="js-fName-input fName-input" name="fName">
+                    <br><br>
+                    <label for="lName">Last:</label>
+                    <input class=" js-lName-input lName-input " name="lName">
+                </fieldset>
+                <fieldset>
+                    <legend>Add a cover image</legend>
+                    <input type="file" class="js-image-input image-input" name="image">
+                    <br>
+                </fieldset>
+                <button class="modify-book-btn" type="submit">Modify This Book</button>
+            </form>
+        </div>
     </div>
-
-    <div class="data-modify-modal hide">
-        <form class="js-edit-form grid-form" action="#">
-            <button type="button" class="close-mod-btn"></button>
-            <h1 class="form-header">Modify this Book in Your Wishlist</h1>
-            <fieldset>
-                <legend>Book Title</legend>
-                <label for="title" class="title-label">Title:</label>
-                <input class="js-title-input title-input" name="title">
-            </fieldset>
-            <fieldset class="author-fieldset">
-                <legend>Author</legend>
-                <label for="fName" class="fName-label">First:</label>
-                <input class="js-fName-input fName-input" name="fName">
-                <br><br>
-                <label for="lName">Last:</label>
-                <input class=" js-lName-input lName-input " name="lName">
-            </fieldset>
-            <fieldset>
-                <legend>Add a cover image</legend>
-                <input type="file" class="js-image-input image-input" name="image">
-                <br>
-            </fieldset>
-            <button class="modify-book-btn" type="submit">Modify This Book</button>
-        </form>
-    </div>
-
 
 
     <script src="main.js "></script>

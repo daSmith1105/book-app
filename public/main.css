@@ -66,11 +66,13 @@ body {
     grid-template-columns: auto auto;
     padding: 10px;
     justify-content: center;
+    background: rgba(223, 85, 5, .6);
 }
 
 .grid-books>div {
     border-radius: 10px;
     text-align: center;
+    width: 150px;
     background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
     background-size: cover;
 }
@@ -80,8 +82,8 @@ body {
 }
 
 .book-img>img {
-    height: 50%;
-    width: 50%;
+    height: 100px;
+    width: 70px;
 }
 
 .edit-btn {
@@ -178,7 +180,7 @@ input {
     margin-right: auto;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
     .grid-books {
         grid-template-columns: auto auto auto auto;
         margin-top: 5em;
