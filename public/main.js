@@ -6,12 +6,12 @@ const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 //CRUD operations
 //Get all books on app start
 function getAllBooks() {
-    $.getJSON(LOCAL_API_URL, function(data) {
+    $.getJSON(WEB_API_URL, function(data) {
         for (let index in data) {
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id}>
-            <div class="edit-btn"><button type="button"></button></div>
-            <div class="del-btn"><button type="button"></button></div>
+            <div class="edit-btn"></div>
+            <div class="del-btn"></div>
             <div class="book-img"><img src=${data[index].image}></div>
             <div class="book-info">
                 <p class="book-title">${data[index].title}</p>
@@ -43,23 +43,26 @@ function handleNewBook() {
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
-        let image = imageInput.val();
+        let uImage = imageInput.val();
         titleInput.val('');
         fNameInput.val('');
         lNameInput.val('');
         imageInput.val('');
 
         let bookObj = {
-            "title": `${title}`,
-            "image": `${image}`,
+            "title": title,
+            "image": uImage.toString('base64'),
             "author": {
-                "firstName": `${fName}`,
-                "lastName": `${lName}`
+                "firstName": fName,
+                "lastName": lName
             }
         };
 
+        console.log(bookObj);
+
+
         $.ajax({
-            url: LOCAL_API_URL,
+            url: WEB_API_URL,
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
@@ -67,7 +70,7 @@ function handleNewBook() {
                 `<div class="book">
                         <div class="edit-btn"><button type="button"></button></div>
                         <div class="del-btn"><button type="button"></button></div>
-                        <div class="book-img"><img src=${image}></div>
+                        <div class="book-img"><img src=${uImage}></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
                             <p class="author">${fName} ${lName}</p>
@@ -125,7 +128,7 @@ function handleEditBook() {
         };
 
         $.ajax({
-            url: LOCAL_API_URL + '/' + editId,
+            url: WEB_API_URL + '/' + editId,
             type: 'PUT',
             data: JSON.stringify(updateObj),
             contentType: "application/json",
@@ -152,19 +155,24 @@ function deletButtonHandler() {
         const $this = $(this).parent();
         const targetId = $this.attr("id");
 
-        $.ajax({
-            url: LOCAL_API_URL + '/' + targetId,
-            type: 'DELETE',
-            data: targetId,
-            complete: this.closest('.book').remove()
-        });
-        //add modal for are you sure you want to remove 'yada yada' from your wishlist
-        alert($this.find('.author').text());
+        $('.delete-confirm-modal').find('.bookData').text($this.text());
+        $('.delete-confirm-modal').removeClass('hide');
 
+        $('.delete-confirm-modal').on('click', '.del-deny-btn', function() {
+            $('.delete-confirm-modal').addClass('hide');
+        })
+
+        $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
+
+            $.ajax({
+                url: WEB_API_URL + '/' + targetId,
+                type: 'DELETE',
+                data: targetId,
+                complete: $this.closest('.book').remove()
+            });
+            $('.delete-confirm-modal').addClass('hide');
+        })
     })
-    $('.cancel-btn').on('click', function() {
-        $('.data-change-modal').addClass('hide');
-    });
 }
 
 function appLoad() {

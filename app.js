@@ -9,6 +9,8 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const booksRouter = require('./routes/books');
 const mongoose = require('mongoose');
+const fs = require('fs');
+const multer = require('multer');
 mongoose.Promise = global.Promise;
 
 var app = express();

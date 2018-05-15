@@ -2,6 +2,8 @@ const { Book } = require('../models/booksModel.js');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const fs = require('fs');
+const multer = require('multer');
 mongoose.Promise = global.Promise;
 
 app.use(express.json());

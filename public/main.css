@@ -10,6 +10,10 @@
     display: none;
 }
 
+.trans {
+    color: rgba(0, 0, 0, 0);
+}
+
 body {
     background-image: url('http://www.lonelyplanet.com/news/wp-content/uploads/2017/06/holiday-realing-inspiration.jpg');
     background-repeat: no-repeat;
@@ -128,6 +132,47 @@ body {
     margin-left: .5em;
 }
 
+.delete-confirm-modal {
+    background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
+    transition: .3s;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 700px;
+    border: 14px solid rgba(223, 85, 5, .3);
+    border-radius: 10px;
+    padding: 2em;
+    text-align: center;
+}
+
+.delete-confirm-modal>h1 {
+    font-size: 130%;
+}
+
+.delete-confirm-modal>p {
+    font-size: 130%;
+}
+
+.del-deny-btn,
+.del-confirm-btn {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 1em;
+    background: rgba(223, 85, 5, .6);
+    padding: .5em;
+    width: 30%;
+    font-size: 130%;
+}
+
+.del-btn-group {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%
+}
+
 .grid-form {
     display: grid;
     grid-gap: 10px;
@@ -192,7 +237,7 @@ input {
 
 @media (min-width: 1200px) {
     .grid-books {
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: auto auto auto auto auto;
         margin-top: 25%;
     }
     grid-container {
@@ -211,6 +256,13 @@ input {
     body {
         background-position: center -2em;
     }
+    .grid-books>div {
+        width: 180px;
+    }
+    .book-img>img {
+        height: 140px;
+        width: 90px;
+    }
 }
 
 @media (min-width: 1400px) {
@@ -218,7 +270,14 @@ input {
         display: grid;
         grid-gap: 10px;
         padding: 10px;
-        grid-template-columns: auto auto auto auto auto;
+        grid-template-columns: auto auto auto auto auto auto;
         justify-content: center;
+    }
+    .grid-books>div {
+        width: 220px;
+    }
+    .book-img>img {
+        height: 180px;
+        width: 120px;
     }
 }
