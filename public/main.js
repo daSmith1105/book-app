@@ -1,14 +1,14 @@
 'use strict'
 
 const LOCAL_API_URL = 'http://localhost:8080/books';
-const LOCAL_API_URL_2 = 'http://localhost:8080/books/';
 const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 
 //CRUD operations
+//Get all books on app start
 function getAllBooks() {
     $.getJSON(LOCAL_API_URL, function(data) {
         for (let index in data) {
-            $('.book-list').append(
+            $('.book-list').prepend(
                 `<div class="book" id=${data[index].id}>
             <div class="edit-btn"><button type="button"></button></div>
             <div class="del-btn"><button type="button"></button></div>
@@ -22,6 +22,7 @@ function getAllBooks() {
     });
 }
 
+//Show modal to create a new book
 function addButtonHandler() {
     $('.js-add').on('click', function() {
         $('.data-input-modal').removeClass('hide');
@@ -31,24 +32,7 @@ function addButtonHandler() {
     });
 }
 
-function editButtonHandler() {
-    $(document).on('click', '.edit-btn', function() {
-        $('.data-modify-modal').removeClass('hide');
-    });
-    $('.close-mod-btn').on('click', function() {
-        $('.data-modify-modal').addClass('hide');
-    });
-}
-
-function handleEditBook() {
-    $('.js-edit-form').on('submit', function(event) {
-        event.preventDefault();
-        alert('book modified');
-        $('.data-modify-modal').addClass('hide');
-    });
-
-}
-
+//Create a new book
 function handleNewBook() {
     $('.js-input-form').on('submit', function(event) {
         event.preventDefault();
@@ -79,7 +63,7 @@ function handleNewBook() {
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
-            complete: $('.book-list').append(
+            complete: $('.book-list').prepend(
                 `<div class="book">
                         <div class="edit-btn"><button type="button"></button></div>
                         <div class="del-btn"><button type="button"></button></div>
@@ -91,27 +75,92 @@ function handleNewBook() {
                     </div>`)
         });
         $('.data-input-modal').addClass('hide');
+        //add modal to confirm new book added - title and author
+        //add close button that performs getAllBooks()
     })
 }
 
-$(".closethis").click(function() {
-    var $this = $(this).parent().parent();
-    if ($this.attr("id") == "mainArea") {
-        $("#myTbl").removeClass("myClass");
-    }
-});
+//Show modal to update a book
+let editId;
 
+function editButtonHandler() {
+    $(document).on('click', '.edit-btn', function() {
+        $('.data-modify-modal').removeClass('hide');
+        const $this = $(this).parent();
+        const targetEditId = $this.attr("id");
+        editId = targetEditId;
+        console.log(editId);
+    });
+    $('.close-mod-btn').on('click', function() {
+        $('.data-modify-modal').addClass('hide');
+    });
+}
+
+//Update and existing book
+function handleEditBook() {
+    $('.js-edit-form').on('submit', function(event) {
+        event.preventDefault();
+        console.log(editId);
+        const titleInput = $(event.currentTarget).find('.js-title-edit');
+        const fNameInput = $(event.currentTarget).find('.js-fName-edit');
+        const lNameInput = $(event.currentTarget).find('.js-lName-edit');
+        const imageInput = $(event.currentTarget).find('.js-image-edit');
+        let title = titleInput.val();
+        let fName = fNameInput.val();
+        let lName = lNameInput.val();
+        let image = imageInput.val();
+        titleInput.val('');
+        fNameInput.val('');
+        lNameInput.val('');
+        imageInput.val('');
+
+        let updateObj = {
+            "id": `${editId}`,
+            "title": `${title}`,
+            "image": `${image}`,
+            "author": {
+                "firstName": `${fName}`,
+                "lastName": `${lName}`
+            }
+        };
+
+        $.ajax({
+            url: LOCAL_API_URL + '/' + editId,
+            type: 'PUT',
+            data: JSON.stringify(updateObj),
+            contentType: "application/json",
+            complete: $('.book-list').prepend(
+                `<div class="book">
+                        <div class="edit-btn"><button type="button"></button></div>
+                        <div class="del-btn"><button type="button"></button></div>
+                        <div class="book-img"><img src=${image}></div>
+                        <div class="book-info">
+                            <p class="book-title">${title}</p>
+                            <p class="author">${fName} ${lName}</p>
+                        </div>
+                    </div>`)
+        })
+        $('.data-modify-modal').addClass('hide');
+        $('.grid-books').html('');
+        getAllBooks();
+    })
+}
+
+//Delete a current book
 function deletButtonHandler() {
     $(document).on('click', '.del-btn', function(event) {
         const $this = $(this).parent();
         const targetId = $this.attr("id");
-        console.log(targetId);
+
         $.ajax({
             url: LOCAL_API_URL + '/' + targetId,
             type: 'DELETE',
             data: targetId,
             complete: this.closest('.book').remove()
         });
+        //add modal for are you sure you want to remove 'yada yada' from your wishlist
+        alert($this.find('.author').text());
+
     })
     $('.cancel-btn').on('click', function() {
         $('.data-change-modal').addClass('hide');
