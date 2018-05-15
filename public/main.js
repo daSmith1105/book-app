@@ -6,7 +6,7 @@ const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 //CRUD operations
 //Get all books on app start
 function getAllBooks() {
-    $.getJSON(WEB_API_URL, function(data) {
+    $.getJSON(LOCAL_API_URL, function(data) {
         for (let index in data) {
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id}>
@@ -62,7 +62,7 @@ function handleNewBook() {
 
 
         $.ajax({
-            url: WEB_API_URL,
+            url: LOCAL_API_URL,
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
@@ -128,7 +128,7 @@ function handleEditBook() {
         };
 
         $.ajax({
-            url: WEB_API_URL + '/' + editId,
+            url: LOCAL_API_URL + '/' + editId,
             type: 'PUT',
             data: JSON.stringify(updateObj),
             contentType: "application/json",
@@ -154,8 +154,9 @@ function deletButtonHandler() {
     $(document).on('click', '.del-btn', function(event) {
         const $this = $(this).parent();
         const targetId = $this.attr("id");
+        const targetAuthorFname = $this.text();
 
-        $('.delete-confirm-modal').find('.bookData').text($this.text());
+        $('.delete-confirm-modal').find('.bookData').text(targetAuthorFname);
         $('.delete-confirm-modal').removeClass('hide');
 
         $('.delete-confirm-modal').on('click', '.del-deny-btn', function() {
@@ -165,7 +166,7 @@ function deletButtonHandler() {
         $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
 
             $.ajax({
-                url: WEB_API_URL + '/' + targetId,
+                url: LOCAL_API_URL + '/' + targetId,
                 type: 'DELETE',
                 data: targetId,
                 complete: $this.closest('.book').remove()

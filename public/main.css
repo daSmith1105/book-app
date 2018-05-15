@@ -159,18 +159,17 @@ body {
 .del-confirm-btn {
     border: 2px solid black;
     border-radius: 10px;
-    margin: 1em;
+    margin: .5em;
     background: rgba(223, 85, 5, .6);
     padding: .5em;
-    width: 30%;
-    font-size: 130%;
+    font-size: 120%;
 }
 
 .del-btn-group {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%
+    width: 100%
 }
 
 .grid-form {
@@ -227,31 +226,24 @@ input {
 
 @media (min-width: 700px) {
     .grid-books {
-        grid-template-columns: auto auto auto auto;
-        margin-top: 5em;
-    }
-    body {
-        background-position: center 3em;
-    }
-}
-
-@media (min-width: 1200px) {
-    .grid-books {
         grid-template-columns: auto auto auto auto auto;
         margin-top: 25%;
     }
-    grid-container {
-        display: grid;
-        grid-template-areas: '. . . app-name app-name . . .' '. . . add-prompt add-prompt . . .' '. . . add-btn add-btn . . .';
-        padding: 10px;
-        justify-content: center;
-        margin-top: 30%;
+    body {
+        background-position: center 3em;
     }
     .add-btn {
         width: 55%;
         margin-right: auto;
         margin-left: auto;
         margin-top: 15%;
+    }
+}
+
+@media (min-width: 1000px) {
+    grid-container {
+        grid-template-areas: '. . . app-name app-name . . .' '. . . add-prompt add-prompt . . .' '. . . add-btn add-btn . . .';
+        margin-top: 30%;
     }
     body {
         background-position: center -2em;
@@ -267,11 +259,8 @@ input {
 
 @media (min-width: 1400px) {
     .grid-books {
-        display: grid;
-        grid-gap: 10px;
-        padding: 10px;
         grid-template-columns: auto auto auto auto auto auto;
-        justify-content: center;
+        margin-top: 40%;
     }
     .grid-books>div {
         width: 220px;
