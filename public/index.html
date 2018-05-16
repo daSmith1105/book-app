@@ -12,70 +12,80 @@
 </head>
 
 <body>
-    <div class="fixed-background">
-        <section role="region" class="landing">
-            <!-- Home page add book-->
-            <div class='grid-container'>
-                <div class="logo-container">
-                    <h1 class="app-name">Wishful Reading</h1>
-                    <img class="logo" src="https://image.freepik.com/free-icon/man-reading_318-59223.jpg" alt="man reading">
+    <div class="mega-container">
+        <div class="fixed-background">
+            <section role="region" class="landing">
+                <!-- Home page add book-->
+                <div class='grid-container'>
+                    <div class="logo-container">
+                        <h1 class="app-name">Wishful Reading</h1>
+                        <img class="logo" src="https://image.freepik.com/free-icon/man-reading_318-59223.jpg" alt="man reading">
+                    </div>
+                    <p class="add-prompt">Add a book you would like to read to your Wishful Reading list</p>
+                    <button type="submit" class="add-btn js-add">ADD A BOOK</button>
                 </div>
-                <p class="add-prompt">Add a book you would like to read to your Wishful Reading list</p>
-                <button type="submit" class="add-btn js-add">ADD A BOOK</button>
+            </section>
+            <div class="book-display" aria-live="assertive">
+                <div class="sticky-top">
+                    <p class='wish-list'> My Wish List Books</p>
+                    <div class="scroll-btns">
+                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/196766-200.png" class="scrollUp">
+                        <img src="https://cdn4.iconfinder.com/data/icons/browser-ui-small-size-optimized-set/154/arrow-bottom-down-navigation-browser-512.png" class="scrollDown">
+                    </div>
+                </div>
+                <div class="book-list grid-books" aria-live="assertive"></div>
             </div>
-        </section>
 
-        <div class="book-list grid-books" aria-live="assertive"></div>
-
-        <div class="delete-confirm-modal hide">
-            <h1>Are you sure you want to delete:</h1>
-            <p class="bookData"></p>
-            <div class="del-btn-group">
-                <button class="del-deny-btn">Cancel</button>
-                <button class="del-confirm-btn">Delete</button>
+            <div class="delete-confirm-modal hide">
+                <h1>Are you sure you want to delete:</h1>
+                <p class="bookData"></p>
+                <div class="del-btn-group">
+                    <button class="del-deny-btn">Cancel</button>
+                    <button class="del-confirm-btn">Delete</button>
+                </div>
             </div>
-        </div>
 
-        <div class="data-input-modal hide">
-            <form class="js-input-form grid-form" action="#">
-                <button type="button" class="close-btn"></button>
-                <h1 class="form-header">Add a New Book to Your Wishlist</h1>
-                <fieldset>
-                    <legend>Book Title</legend>
-                    <label for="title" class="title-label">Title:</label>
-                    <input class="js-title-input title-input" name="title" required>
-                </fieldset>
-                <fieldset class="author-fieldset">
-                    <legend>Author</legend>
-                    <label for="fName" class="fName-label">First:</label>
-                    <input class="js-fName-input fName-input" name="fName" required>
-                    <br><br>
-                    <label for="lName">Last:</label>
-                    <input class=" js-lName-input lName-input " name="lName" required>
-                </fieldset>
-                <button class="add-book-btn" type="submit">Add This Book</button>
-            </form>
-        </div>
+            <div class="data-input-modal hide">
+                <form class="js-input-form grid-form" action="#">
+                    <button type="button" class="close-btn"></button>
+                    <h1 class="form-header">Add a New Book to Your Wishlist</h1>
+                    <fieldset>
+                        <legend>Book Title</legend>
+                        <label for="title" class="title-label">Title:</label>
+                        <input class="js-title-input title-input" name="title" required>
+                    </fieldset>
+                    <fieldset class="author-fieldset">
+                        <legend>Author</legend>
+                        <label for="fName" class="fName-label">First:</label>
+                        <input class="js-fName-input fName-input" name="fName" required>
+                        <br><br>
+                        <label for="lName">Last:</label>
+                        <input class=" js-lName-input lName-input " name="lName" required>
+                    </fieldset>
+                    <button class="add-book-btn" type="submit">Add This Book</button>
+                </form>
+            </div>
 
-        <div class="data-modify-modal hide">
-            <form class="js-edit-form grid-form" action="#">
-                <button type="button" class="close-mod-btn"></button>
-                <h1 class="form-header">Modify this Book in Your Wishlist</h1>
-                <fieldset>
-                    <legend>Book Title</legend>
-                    <label for="title" class="title-label">Title:</label>
-                    <input class="js-title-edit title-edit" name="title">
-                </fieldset>
-                <fieldset class="author-fieldset">
-                    <legend>Author</legend>
-                    <label for="fName" class="fName-label">First:</label>
-                    <input class="js-fName-edit fName-edit" name="fName">
-                    <br><br>
-                    <label for="lName">Last:</label>
-                    <input class="js-lName-edit lName-edit" name="lName">
-                </fieldset>
-                <button class="modify-book-btn" type="submit">Modify This Book</button>
-            </form>
+            <div class="data-modify-modal hide">
+                <form class="js-edit-form grid-form" action="#">
+                    <button type="button" class="close-mod-btn"></button>
+                    <h1 class="form-header">Modify this Book in Your Wishlist</h1>
+                    <fieldset>
+                        <legend>Book Title</legend>
+                        <label for="title" class="title-label">Title:</label>
+                        <input class="js-title-edit title-edit" name="title">
+                    </fieldset>
+                    <fieldset class="author-fieldset">
+                        <legend>Author</legend>
+                        <label for="fName" class="fName-label">First:</label>
+                        <input class="js-fName-edit fName-edit" name="fName">
+                        <br><br>
+                        <label for="lName">Last:</label>
+                        <input class="js-lName-edit lName-edit" name="lName">
+                    </fieldset>
+                    <button class="modify-book-btn" type="submit">Modify This Book</button>
+                </form>
+            </div>
         </div>
     </div>
     <script src="main.js "></script>

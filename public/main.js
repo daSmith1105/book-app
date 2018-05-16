@@ -3,11 +3,27 @@
 const LOCAL_API_URL = 'http://localhost:8080/books';
 const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 
+function scrollUp() {
+    $(document).find('.scrollUp').on('click', function() {
+        $("html, body").animate({
+            scrollTop: $(".book-display").offset().top
+        }, 1000);
+    })
+}
+
+function scrollDown() {
+    $(document).find('.scrollDown').on('click', function() {
+        $("html, body").animate({
+            scrollTop: $("body").offset().top
+        }, 1000);
+    })
+}
 
 //CRUD operations
 //Get all books on app start
+
 function getAllBooks() {
-    $.getJSON(WEB_API_URL, function(data) {
+    $.getJSON(LOCAL_API_URL, function(data) {
         for (let index in data) {
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id}>
@@ -23,13 +39,20 @@ function getAllBooks() {
     });
 }
 
+
 //Show modal to create a new book
 function addButtonHandler() {
     $('.js-add').on('click', function() {
         $('.data-input-modal').removeClass('hide');
+        $('.edit-btn').addClass('hide');
+        $('.del-btn').addClass('hide');
+
     });
+
     $('.close-btn').on('click', function() {
         $('.data-input-modal').addClass('hide');
+        $('.edit-btn').removeClass('hide');
+        $('.del-btn').removeClass('hide');
     });
 }
 
@@ -37,6 +60,8 @@ function addButtonHandler() {
 function handleNewBook() {
     $('.js-input-form').on('submit', function(event) {
         event.preventDefault();
+        $('.edit-btn').removeClass('hide');
+        $('.del-btn').removeClass('hide');
         const titleInput = $(event.currentTarget).find('.js-title-input');
         const fNameInput = $(event.currentTarget).find('.js-fName-input');
         const lNameInput = $(event.currentTarget).find('.js-lName-input');
@@ -59,7 +84,7 @@ function handleNewBook() {
 
 
         $.ajax({
-            url: WEB_API_URL,
+            url: LOCAL_API_URL,
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
@@ -75,6 +100,11 @@ function handleNewBook() {
                     </div>`)
         });
         $('.data-input-modal').addClass('hide');
+        $("html, body").animate({
+            scrollTop: $(".book-display").offset().top
+        }, 1000);
+        //add modal to confirm new book added - title and author
+        //add close button that performs getAllBooks()
     })
 }
 
@@ -83,6 +113,9 @@ let editId;
 
 function editButtonHandler() {
     $(document).on('click', '.edit-btn', function() {
+        $("html, body").animate({
+            scrollTop: $("body").offset().top
+        }, 1000);
         $('.data-modify-modal').removeClass('hide');
         const $this = $(this).parent();
         const targetEditId = $this.attr("id");
@@ -119,7 +152,7 @@ function handleEditBook() {
         };
 
         $.ajax({
-            url: WEB_API_URL + '/' + editId,
+            url: LOCAL_API_URL + '/' + editId,
             type: 'PUT',
             data: JSON.stringify(updateObj),
             contentType: "application/json",
@@ -137,6 +170,9 @@ function handleEditBook() {
         $('.data-modify-modal').addClass('hide');
         $('.grid-books').html('');
         getAllBooks();
+        $("html, body").animate({
+            scrollTop: $(".book-display").offset().top
+        }, 1000);
     })
 }
 
@@ -145,9 +181,14 @@ function deletButtonHandler() {
     $(document).on('click', '.del-btn', function(event) {
         const $this = $(this).parent();
         const targetId = $this.attr("id");
-        const targetAuthorFname = $this.text();
+        const targetText = $this.text();
 
-        $('.delete-confirm-modal').find('.bookData').text(targetAuthorFname);
+        $('.delete-confirm-modal').find('.bookData').text(targetText);
+
+        $("html, body").animate({
+            scrollTop: $("body").offset().top
+        }, 1000);
+
         $('.delete-confirm-modal').removeClass('hide');
 
         $('.delete-confirm-modal').on('click', '.del-deny-btn', function() {
@@ -157,7 +198,7 @@ function deletButtonHandler() {
         $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
 
             $.ajax({
-                url: WEB_API_URL + '/' + targetId,
+                url: LOCAL_API_URL + '/' + targetId,
                 type: 'DELETE',
                 data: targetId,
                 complete: $this.closest('.book').remove()
@@ -174,5 +215,7 @@ function appLoad() {
     $(deletButtonHandler);
     $(handleNewBook);
     $(handleEditBook);
+    $(scrollUp);
+    $(scrollDown);
 }
 $(appLoad);
