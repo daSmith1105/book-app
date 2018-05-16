@@ -90,8 +90,8 @@ function handleNewBook() {
             contentType: "application/json",
             complete: $('.book-list').prepend(
                 `<div class="book">
-                        <div class="edit-btn"><button type="button"></button></div>
-                        <div class="del-btn"><button type="button"></button></div>
+                        <div class="edit-btn"></div>
+                        <div class="del-btn"></div>
                         <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
@@ -158,8 +158,8 @@ function handleEditBook() {
             contentType: "application/json",
             complete: $('.book-list').prepend(
                 `<div class="book">
-                        <div class="edit-btn"><button type="button"></button></div>
-                        <div class="del-btn"><button type="button"></button></div>
+                        <div class="edit-btn"></div>
+                        <div class="del-btn"></div>
                         <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
