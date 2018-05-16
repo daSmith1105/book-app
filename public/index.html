@@ -25,7 +25,13 @@
             </div>
         </section>
 
-        <div class="book-list grid-books" aria-live="assertive"></div>
+        <div class="book-display" aria-live="assertive">
+            <div class="sticky-top sticky-bottom">
+                <p class='wish-list'> My Wish List Books</p>
+                <img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png" class="scroll-btn">
+            </div>
+            <div class="book-list grid-books" aria-live="assertive"></div>
+        </div>
 
         <div class="delete-confirm-modal hide">
             <h1>Are you sure you want to delete:</h1>
@@ -53,11 +59,6 @@
                     <label for="lName">Last:</label>
                     <input class=" js-lName-input lName-input " name="lName" required>
                 </fieldset>
-                <fieldset>
-                    <legend>Add a cover image</legend>
-                    <input type="file" class="js-image-input image-input" name="image">
-                    <br>
-                </fieldset>
                 <button class="add-book-btn" type="submit">Add This Book</button>
             </form>
         </div>
@@ -78,11 +79,6 @@
                     <br><br>
                     <label for="lName">Last:</label>
                     <input class="js-lName-edit lName-edit" name="lName">
-                </fieldset>
-                <fieldset>
-                    <legend>Add a cover image</legend>
-                    <input type="file" class="js-image-edit image-input" name="image">
-                    <br>
                 </fieldset>
                 <button class="modify-book-btn" type="submit">Modify This Book</button>
             </form>

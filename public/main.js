@@ -3,16 +3,25 @@
 const LOCAL_API_URL = 'http://localhost:8080/books';
 const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 
+function scroll() {
+
+    $(document).find('.scroll-btn').on('click', function() {
+        $("html, body").animate({
+            scrollTop: $(".book-display").offset().top
+        }, 1000);
+    })
+}
+
 //CRUD operations
 //Get all books on app start
 function getAllBooks() {
-    $.getJSON(WEB_API_URL, function(data) {
+    $.getJSON(LOCAL_API_URL, function(data) {
         for (let index in data) {
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id}>
             <div class="edit-btn"></div>
             <div class="del-btn"></div>
-            <div class="book-img"><img src=${data[index].image}></div>
+            <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
             <div class="book-info">
                 <p class="book-title">${data[index].title}</p>
                 <p class="author">${data[index].author}</p>
@@ -39,19 +48,15 @@ function handleNewBook() {
         const titleInput = $(event.currentTarget).find('.js-title-input');
         const fNameInput = $(event.currentTarget).find('.js-fName-input');
         const lNameInput = $(event.currentTarget).find('.js-lName-input');
-        const imageInput = $(event.currentTarget).find('.js-image-input');
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
-        let uImage = imageInput.val();
         titleInput.val('');
         fNameInput.val('');
         lNameInput.val('');
-        imageInput.val('');
 
         let bookObj = {
             "title": title,
-            "image": uImage.toString('base64'),
             "author": {
                 "firstName": fName,
                 "lastName": lName
@@ -62,7 +67,7 @@ function handleNewBook() {
 
 
         $.ajax({
-            url: WEB_API_URL,
+            url: LOCAL_API_URL,
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
@@ -70,7 +75,7 @@ function handleNewBook() {
                 `<div class="book">
                         <div class="edit-btn"><button type="button"></button></div>
                         <div class="del-btn"><button type="button"></button></div>
-                        <div class="book-img"><img src=${uImage}></div>
+                        <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
                             <p class="author">${fName} ${lName}</p>
@@ -107,20 +112,16 @@ function handleEditBook() {
         const titleInput = $(event.currentTarget).find('.js-title-edit');
         const fNameInput = $(event.currentTarget).find('.js-fName-edit');
         const lNameInput = $(event.currentTarget).find('.js-lName-edit');
-        const imageInput = $(event.currentTarget).find('.js-image-edit');
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
-        let image = imageInput.val();
         titleInput.val('');
         fNameInput.val('');
         lNameInput.val('');
-        imageInput.val('');
 
         let updateObj = {
             "id": `${editId}`,
             "title": `${title}`,
-            "image": `${image}`,
             "author": {
                 "firstName": `${fName}`,
                 "lastName": `${lName}`
@@ -128,7 +129,7 @@ function handleEditBook() {
         };
 
         $.ajax({
-            url: WEB_API_URL + '/' + editId,
+            url: LOCAL_API_URL + '/' + editId,
             type: 'PUT',
             data: JSON.stringify(updateObj),
             contentType: "application/json",
@@ -136,7 +137,7 @@ function handleEditBook() {
                 `<div class="book">
                         <div class="edit-btn"><button type="button"></button></div>
                         <div class="del-btn"><button type="button"></button></div>
-                        <div class="book-img"><img src=${image}></div>
+                        <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
                             <p class="author">${fName} ${lName}</p>
@@ -166,7 +167,7 @@ function deletButtonHandler() {
         $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
 
             $.ajax({
-                url: WEB_API_URL + '/' + targetId,
+                url: LOCAL_API_URL + '/' + targetId,
                 type: 'DELETE',
                 data: targetId,
                 complete: $this.closest('.book').remove()
@@ -183,5 +184,6 @@ function appLoad() {
     $(deletButtonHandler);
     $(handleNewBook);
     $(handleEditBook);
+    $(scroll);
 }
 $(appLoad);
