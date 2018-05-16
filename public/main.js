@@ -6,7 +6,7 @@ const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 //CRUD operations
 //Get all books on app start
 function getAllBooks() {
-    $.getJSON(LOCAL_API_URL, function(data) {
+    $.getJSON(WEB_API_URL, function(data) {
         for (let index in data) {
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id}>
@@ -62,7 +62,7 @@ function handleNewBook() {
 
 
         $.ajax({
-            url: LOCAL_API_URL,
+            url: WEB_API_URL,
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
@@ -128,7 +128,7 @@ function handleEditBook() {
         };
 
         $.ajax({
-            url: LOCAL_API_URL + '/' + editId,
+            url: WEB_API_URL + '/' + editId,
             type: 'PUT',
             data: JSON.stringify(updateObj),
             contentType: "application/json",
@@ -166,7 +166,7 @@ function deletButtonHandler() {
         $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
 
             $.ajax({
-                url: LOCAL_API_URL + '/' + targetId,
+                url: WEB_API_URL + '/' + targetId,
                 type: 'DELETE',
                 data: targetId,
                 complete: $this.closest('.book').remove()
