@@ -31,8 +31,7 @@ function seedBlogPostData() {
             author: {
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName()
-            },
-            image: faker.lorem.sentence()
+            }
         });
     }
 
@@ -90,7 +89,7 @@ describe('books API resource', function() {
 
                     res.body.forEach(function(book) {
                         book.should.be.a('object');
-                        book.should.include.keys('id', 'title', 'author', 'image', 'created');
+                        book.should.include.keys('id', 'title', 'author', 'created');
                     });
                     // check a single post to verify its values match with those in db
                     resBook = res.body[0];
@@ -113,8 +112,7 @@ describe('books API resource', function() {
                 author: {
                     firstName: faker.name.firstName(),
                     lastName: faker.name.lastName(),
-                },
-                image: faker.lorem.sentence()
+                }
             };
 
             return chai.request(app)
@@ -125,20 +123,18 @@ describe('books API resource', function() {
                     res.should.be.json;
                     res.body.should.be.a('object');
                     res.body.should.include.keys(
-                        'id', 'title', 'author', 'image', 'created');
+                        'id', 'title', 'author', 'created');
                     res.body.title.should.equal(newBook.title);
 
                     res.body.id.should.not.be.null;
                     res.body.author.should.equal(
                         `${newBook.author.firstName} ${newBook.author.lastName}`);
-                    res.body.image.should.equal(newBook.image);
                     return Book.findById(res.body.id);
                 })
                 .then(function(book) {
                     book.title.should.equal(newBook.title);
                     book.author.firstName.should.equal(newBook.author.firstName);
                     book.author.lastName.should.equal(newBook.author.lastName);
-                    book.image.should.equal(newBook.image);
                 });
         });
     });
@@ -151,8 +147,7 @@ describe('books API resource', function() {
                 author: {
                     firstName: 'Charles',
                     lastName: 'Dickens'
-                },
-                image: 'book cover image url',
+                }
             };
 
             return Book
@@ -172,7 +167,6 @@ describe('books API resource', function() {
                     book.title.should.equal(updateData.title);
                     book.author.firstName.should.equal(updateData.author.firstName);
                     book.author.lastName.should.equal(updateData.author.lastName);
-                    book.image.should.equal(updateData.image);
                 });
         });
     });

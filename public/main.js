@@ -12,7 +12,7 @@ function getAllBooks() {
                 `<div class="book" id=${data[index].id}>
             <div class="edit-btn"></div>
             <div class="del-btn"></div>
-            <div class="book-img"><img src=${data[index].image}></div>
+            <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
             <div class="book-info">
                 <p class="book-title">${data[index].title}</p>
                 <p class="author">${data[index].author}</p>
@@ -43,11 +43,9 @@ function handleNewBook() {
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
-        let uImage = imageInput.val();
         titleInput.val('');
         fNameInput.val('');
         lNameInput.val('');
-        imageInput.val('');
 
         let bookObj = {
             "title": title,
@@ -70,7 +68,7 @@ function handleNewBook() {
                 `<div class="book">
                         <div class="edit-btn"><button type="button"></button></div>
                         <div class="del-btn"><button type="button"></button></div>
-                        <div class="book-img"><img src=${uImage}></div>
+                        <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
                             <p class="author">${fName} ${lName}</p>
@@ -78,8 +76,6 @@ function handleNewBook() {
                     </div>`)
         });
         $('.data-input-modal').addClass('hide');
-        //add modal to confirm new book added - title and author
-        //add close button that performs getAllBooks()
     })
 }
 
@@ -136,7 +132,7 @@ function handleEditBook() {
                 `<div class="book">
                         <div class="edit-btn"><button type="button"></button></div>
                         <div class="del-btn"><button type="button"></button></div>
-                        <div class="book-img"><img src=${image}></div>
+                        <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
                             <p class="author">${fName} ${lName}</p>
