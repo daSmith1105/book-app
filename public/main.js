@@ -3,6 +3,7 @@
 const LOCAL_API_URL = 'http://localhost:8080/books';
 const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 
+
 //CRUD operations
 //Get all books on app start
 function getAllBooks() {
@@ -39,7 +40,6 @@ function handleNewBook() {
         const titleInput = $(event.currentTarget).find('.js-title-input');
         const fNameInput = $(event.currentTarget).find('.js-fName-input');
         const lNameInput = $(event.currentTarget).find('.js-lName-input');
-        const imageInput = $(event.currentTarget).find('.js-image-input');
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
@@ -49,7 +49,6 @@ function handleNewBook() {
 
         let bookObj = {
             "title": title,
-            "image": uImage.toString('base64'),
             "author": {
                 "firstName": fName,
                 "lastName": lName
@@ -103,20 +102,16 @@ function handleEditBook() {
         const titleInput = $(event.currentTarget).find('.js-title-edit');
         const fNameInput = $(event.currentTarget).find('.js-fName-edit');
         const lNameInput = $(event.currentTarget).find('.js-lName-edit');
-        const imageInput = $(event.currentTarget).find('.js-image-edit');
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
-        let image = imageInput.val();
         titleInput.val('');
         fNameInput.val('');
         lNameInput.val('');
-        imageInput.val('');
 
         let updateObj = {
             "id": `${editId}`,
             "title": `${title}`,
-            "image": `${image}`,
             "author": {
                 "firstName": `${fName}`,
                 "lastName": `${lName}`

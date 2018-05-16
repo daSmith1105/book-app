@@ -98,7 +98,6 @@ describe('books API resource', function() {
                 .then(book => {
                     resBook.title.should.equal(book.title);
                     resBook.author.should.equal(book.authorName);
-                    resBook.image.should.equal(book.image);
                 });
         });
     });

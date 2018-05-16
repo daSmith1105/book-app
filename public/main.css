@@ -76,7 +76,7 @@ body {
 .grid-books>div {
     border-radius: 10px;
     text-align: center;
-    width: 150px;
+    width: 140px;
     background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
     background-size: cover;
 }
@@ -88,6 +88,7 @@ body {
 .book-img>img {
     height: 100px;
     width: 70px;
+    border: 4px solid coral;
 }
 
 .edit-btn {
@@ -147,12 +148,10 @@ body {
     text-align: center;
 }
 
-.delete-confirm-modal>h1 {
-    font-size: 130%;
-}
-
+.delete-confirm-modal>h1,
 .delete-confirm-modal>p {
     font-size: 130%;
+    padding: .5em;
 }
 
 .del-deny-btn,
@@ -207,10 +206,6 @@ fieldset {
 
 input {
     border: 2px solid black;
-}
-
-.image-input {
-    background-color: white;
 }
 
 .add-book-btn,
