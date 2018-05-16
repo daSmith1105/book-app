@@ -4,7 +4,7 @@ const LOCAL_API_URL = 'http://localhost:8080/books';
 const WEB_API_URL = 'https://wishful-reading.herokuapp.com/books';
 
 function scrollUp() {
-    $(document).find('.scrollUp').on('click', function() {
+    $(document).find('.scrollUp').on('click touch', function() {
         $("html, body").animate({
             scrollTop: $(".book-display").offset().top
         }, 1000);
@@ -12,7 +12,7 @@ function scrollUp() {
 }
 
 function scrollDown() {
-    $(document).find('.scrollDown').on('click', function() {
+    $(document).find('.scrollDown').on('click touch', function() {
         $("html, body").animate({
             scrollTop: $("body").offset().top
         }, 1000);
@@ -42,7 +42,7 @@ function getAllBooks() {
 
 //Show modal to create a new book
 function addButtonHandler() {
-    $('.js-add').on('click', function() {
+    $('.js-add').on('click touch', function() {
         $('.data-input-modal').removeClass('hide');
         $('.edit-btn').addClass('hide');
         $('.del-btn').addClass('hide');
@@ -112,7 +112,7 @@ function handleNewBook() {
 let editId;
 
 function editButtonHandler() {
-    $(document).on('click', '.edit-btn', function() {
+    $(document).on('click touch', '.edit-btn', function() {
         $("html, body").animate({
             scrollTop: $("body").offset().top
         }, 1000);
@@ -178,7 +178,7 @@ function handleEditBook() {
 
 //Delete a current book
 function deletButtonHandler() {
-    $(document).on('click', '.del-btn', function(event) {
+    $(document).on('click touch', '.del-btn', function(event) {
         const $this = $(this).parent();
         const targetId = $this.attr("id");
         const targetText = $this.text();
