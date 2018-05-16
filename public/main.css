@@ -1,354 +1,356 @@
-            * {
-            font-family: 'Boogaloo', cursive;
-            font-size: 100%;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        .hide {
-            display: none;
-        }
-        
-        .trans {
-            color: rgba(0, 0, 0, 0);
-        }
-        
-        body {
-            background-image: url('http://www.lonelyplanet.com/news/wp-content/uploads/2017/06/holiday-realing-inspiration.jpg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center 9em;
-            background-attachment: fixed;
-            max-width: 1400px;
-        }
-        
-        .grid-container {
-            display: grid;
-            grid-template-areas: '. . . app-name app-name . . .' '. . . . . . . .' '. . . add-prompt add-prompt . . .' '. . . add-btn add-btn . . .';
-            padding: 10px;
-            justify-content: center;
-        }
-        
-        .logo-container {
-            grid-area: app-name;
-            text-align: center;
-            font-size: 300%;
-            margin-top: .5em;
-            position: relative;
-        }
-        
-        .logo {
-            width: 12%;
-            height: auto;
-            position: relative;
-            top: 0;
-            left: 2em;
-        }
-        
-        .add-prompt {
-            grid-area: add-prompt;
-            text-align: center;
-            font-size: 140%;
-            color: black;
-        }
-        
-        .add-btn {
-            grid-area: add-btn;
-            text-align: center;
-            font-size: 30px;
-            padding: 10px;
-            margin-top: 54%;
-            border: 2px solid black;
-            border-radius: 10px;
-            background: rgba(223, 85, 5, .6);
-        }
-        
-        .sticky-top {
-            position: -webkit-sticky;
-            /* Safari */
-            position: sticky;
-            top: 0;
-            background: rgba(95, 158, 160, .9);
-            padding-top: .25em;
-            padding-bottom: .25em;
-        }
-        
-        .sticky-bottom {
-            position: -webkit-sticky;
-            /* Safari */
-            position: sticky;
-            bottom: 100vh;
-            background: rgba(95, 158, 160, .9);
-            padding-top: .25em;
-            padding-bottom: .25em;
-        }
-        
-        .wish-list {
-            font-size: 160%;
-            text-align: center;
-        }
-        
-        .scroll-btn {
-            height: 2em;
-            width: 4em;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .book-display {
-            background: rgba(223, 85, 5, .6);
-        }
-        
-        .grid-books {
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: auto auto;
-            justify-content: center;
-            margin-top: .5em;
-        }
-        
-        .grid-books>div {
-            border-radius: 10px;
-            text-align: center;
-            width: 150px;
-            background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
-            background-size: cover;
-            font-size: 120%;
-        }
-        
-        .book-img {
-            clear: both;
-        }
-        
-        .book-img>img {
-            height: 100px;
-            width: 70px;
-        }
-        
-        .edit-btn {
-            float: left;
-            margin-left: 4%;
-            margin-top: 2%;
-            background: url('http://icons.iconarchive.com/icons/hopstarter/soft-scraps/128/Text-Edit-icon.png');
-            background-size: contain;
-            height: 25px;
-            width: 25px;
-        }
-        
-        .del-btn {
-            float: right;
-            margin-right: 4%;
-            margin-top: 2%;
-            background: url('http://wfarm2.dataknet.com/static/resources/icons/set1/a947bd4c478b.png');
-            background-size: contain;
-            height: 25px;
-            width: 25px;
-        }
-        
-        .data-input-modal,
-        .data-modify-modal {
-            transition: .3s;
-            position: absolute;
-            top: 20%;
-            left: 0;
-            right: 0;
-            margin: auto;
-            max-width: 700px;
-            border: 14px solid rgba(223, 85, 5, .3);
-            border-radius: 10px;
-        }
-        
-        .close-btn,
-        .close-mod-btn {
-            background: url('http://wfarm2.dataknet.com/static/resources/icons/set1/a947bd4c478b.png');
-            background-size: contain;
-            height: 35px;
-            width: 35px;
-            margin-left: .5em;
-        }
-        
-        .delete-confirm-modal {
-            background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
-            transition: .3s;
-            position: absolute;
-            top: 30%;
-            left: 0;
-            right: 0;
-            margin: auto;
-            max-width: 700px;
-            border: 14px solid rgba(223, 85, 5, .3);
-            border-radius: 10px;
-            padding: 2em;
-            text-align: center;
-        }
-        
-        .delete-confirm-modal>h1 {
-            font-size: 130%;
-        }
-        
-        .delete-confirm-modal>p {
-            font-size: 130%;
-        }
-        
-        .del-deny-btn,
-        .del-confirm-btn {
-            border: 2px solid black;
-            border-radius: 10px;
-            margin: .5em;
-            background: rgba(223, 85, 5, .6);
-            padding: .5em;
-            font-size: 120%;
-        }
-        
-        .del-btn-group {
-            display: inline-block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%
-        }
-        
-        .grid-form {
-            display: grid;
-            grid-gap: 10px;
-            padding: 10px;
-            grid-template-columns: auto;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        form {
-            background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
-            border: 3px solid black;
-            border-radius: 5px;
-            padding-bottom: 20em;
-        }
-        
-        form h1 {
-            font-size: 140%;
-            clear: both;
-        }
-        
-        legend {
-            text-align: left;
-            padding-left: 1em;
-            font-size: 110%
-        }
-        
-        fieldset {
-            text-align: left;
-            border: 2px solid black;
-            padding: .5em;
-        }
-        
-        input {
-            border: 2px solid black;
-        }
-        
-        .add-book-btn,
-        .modify-book-btn {
-            border: 2px solid black;
-            border-radius: 10px;
-            font-size: 140%;
-            padding: .4em;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        @media (min-width: 700px) {
-            .scroll-btn {
-                height: 2em;
-                width: 4em;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .book-display {
-                margin-top: 23%;
-            }
-            .grid-books {
-                grid-template-columns: auto auto auto auto;
-                margin-top: 2%;
-            }
-            body {
-                background-position: center 3em;
-            }
-            .add-btn {
-                width: 55%;
-                margin-right: auto;
-                margin-left: auto;
-                margin-top: 15%;
-            }
-        }
-        
-        @media (min-width: 890px) {
-            .book-display {
-                margin-top: 32%;
-            }
-            .grid-books>div {
-                width: 180px;
-            }
-            .book-img>img {
-                height: 140px;
-                width: 90px;
-            }
-        }
-        
-        @media (min-width: 1000px) {
-            .book-display {
-                margin-top: 28%;
-            }
-            .grid-books {
-                grid-template-columns: auto auto auto auto auto;
-                margin-top: 1%;
-            }
-            body {
-                background-position: center -2em;
-            }
-            .grid-books>div {
-                width: 180px;
-            }
-            .book-img>img {
-                height: 140px;
-                width: 90px;
-            }
-            .wish-list {
-                font-size: 210%;
-            }
-        }
-        
-        @media (min-width: 1220px) {
-            .book-display {
-                margin-top: 31%;
-            }
-            body {
-                background-position: center -2em;
-            }
-            .grid-books>div {
-                width: 200px;
-            }
-            .book-img>img {
-                height: 160px;
-                width: 110px;
-            }
-        }
-        
-        @media (min-width: 1400px) {
-            .book-display {
-                margin-top: 35%;
-            }
-            .grid-books {
-                margin-top: 2%;
-            }
-            .grid-books>div {
-                width: 220px;
-            }
-            .book-img>img {
-                height: 180px;
-                width: 120px;
-            }
-            .wish-list {
-                font-size: 220%;
-            }
+* {
+    font-family: 'Boogaloo', cursive;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none;
+}
+
+body {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mega-container {
+    background-image: url('http://www.lonelyplanet.com/news/wp-content/uploads/2017/06/holiday-realing-inspiration.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center 9em;
+    background-attachment: fixed;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: '. . . app-name app-name . . .' '. . . . . . . .' '. . . add-prompt add-prompt . . .' '. . . add-btn add-btn . . .';
+    padding: 10px;
+    justify-content: center;
+}
+
+.logo-container {
+    grid-area: app-name;
+    text-align: center;
+    font-size: 300%;
+    margin-top: .5em;
+    position: relative;
+}
+
+.logo {
+    width: 12%;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: 2em;
+}
+
+.add-prompt {
+    grid-area: add-prompt;
+    text-align: center;
+    font-size: 140%;
+    color: black;
+}
+
+.add-btn {
+    grid-area: add-btn;
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    margin-top: 54%;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: rgba(223, 85, 5, .6);
+}
+
+.sticky-top {
+    background: rgba(95, 158, 160, .9);
+    padding-top: .25em;
+    padding-bottom: .25em;
+}
+
+.wish-list {
+    font-size: 160%;
+    text-align: center;
+}
+
+.scroll-btns {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.scrollDown {
+    height: 2em;
+    width: 4em;
+    display: inline;
+    margin-left: .65em;
+}
+
+.scrollUp {
+    height: 2.5em;
+    width: 5.5em;
+    display: inline;
+    margin-right: .9em;
+}
+
+.book-display {
+    background: rgba(0, 0, 0, .9);
+}
+
+.grid-books {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    margin-top: .5em;
+}
+
+.grid-books>div {
+    border-radius: 10px;
+    text-align: center;
+    width: 150px;
+    background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
+    background-size: cover;
+    font-size: 120%;
+}
+
+.grid-books>div:hover {}
+
+.book-img {
+    clear: both;
+}
+
+.book-img>img {
+    height: 100px;
+    width: 70px;
+}
+
+.edit-btn {
+    float: left;
+    margin-left: 4%;
+    margin-top: 2%;
+    background: url('http://icons.iconarchive.com/icons/hopstarter/soft-scraps/128/Text-Edit-icon.png');
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+}
+
+.del-btn {
+    float: right;
+    margin-right: 4%;
+    margin-top: 2%;
+    background: url('http://wfarm2.dataknet.com/static/resources/icons/set1/a947bd4c478b.png');
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+}
+
+.data-input-modal,
+.data-modify-modal {
+    transition: .3s;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 700px;
+    border: 14px solid rgba(223, 85, 5, .3);
+    border-radius: 10px;
+}
+
+.close-btn,
+.close-mod-btn {
+    background: url('http://wfarm2.dataknet.com/static/resources/icons/set1/a947bd4c478b.png');
+    background-size: contain;
+    height: 35px;
+    width: 35px;
+    margin-left: .5em;
+}
+
+.delete-confirm-modal {
+    background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
+    transition: .3s;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 700px;
+    border: 14px solid rgba(223, 85, 5, .3);
+    border-radius: 10px;
+    padding: 2em;
+    text-align: center;
+}
+
+.delete-confirm-modal>h1,
+.delete-confirm-modal>p {
+    font-size: 130%;
+}
+
+.del-deny-btn,
+.del-confirm-btn {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: .5em;
+    background: rgba(223, 85, 5, .6);
+    padding: .5em;
+    font-size: 120%;
+}
+
+.del-btn-group {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+.grid-form {
+    display: grid;
+    grid-gap: 10px;
+    padding: 10px;
+    grid-template-columns: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+form {
+    background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
+    border: 3px solid black;
+    border-radius: 5px;
+    padding-bottom: 20em;
+}
+
+form h1 {
+    font-size: 140%;
+    clear: both;
+}
+
+legend {
+    text-align: left;
+    padding-left: 1em;
+    font-size: 110%
+}
+
+fieldset {
+    text-align: left;
+    border: 2px solid black;
+    padding: .5em;
+}
+
+input {
+    border: 2px solid black;
+}
+
+.add-book-btn,
+.modify-book-btn {
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 140%;
+    padding: .4em;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 560px) {
+    .grid-books {
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media (min-width: 700px) {
+    .scroll-btn {
+        height: 2em;
+        width: 4em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .book-display {
+        margin-top: 34%;
+    }
+    .grid-books {
+        grid-template-columns: auto auto auto auto;
+        margin-top: 2%;
+    }
+    body {
+        background-position: center 3em;
+    }
+    .add-btn {
+        width: 55%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 15%;
+    }
+}
+
+@media (min-width: 890px) {
+    .book-display {
+        margin-top: 36%;
+    }
+    .grid-books>div {
+        width: 180px;
+    }
+    .book-img>img {
+        height: 140px;
+        width: 90px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .book-display {
+        margin-top: 26%;
+    }
+    .grid-books {
+        grid-template-columns: auto auto auto auto auto;
+        margin-top: 1%;
+    }
+    .mega-container {
+        background-position: center -2em;
+    }
+    .grid-books>div {
+        width: 180px;
+    }
+    .book-img>img {
+        height: 140px;
+        width: 90px;
+    }
+    .wish-list {
+        font-size: 210%;
+    }
+}
+
+@media (min-width: 1220px) {
+    .book-display {
+        margin-top: 28%;
+    }
+    .mega-container {
+        background-position: center -6em;
+    }
+    .grid-books>div {
+        width: 200px;
+    }
+    .book-img>img {
+        height: 160px;
+        width: 110px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .book-display {
+        margin-top: 30%;
+    }
+    .grid-books>div {
+        width: 220px;
+    }
+    .book-img>img {
+        height: 180px;
+        width: 120px;
+    }
+    .mega-container {
+        background-position: center -9em;
+    }
+}
