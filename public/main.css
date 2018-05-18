@@ -162,6 +162,11 @@ body {
     border-radius: 10px;
 }
 
+.book-to-edit {
+    padding: .5em;
+    font-size: 140%;
+}
+
 .close-btn,
 .close-mod-btn {
     background: url('http://wfarm2.dataknet.com/static/resources/icons/set1/a947bd4c478b.png');

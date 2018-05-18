@@ -31,8 +31,8 @@ function getAllBooks() {
             <div class="del-btn"></div>
             <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
             <div class="book-info">
-                <p class="book-title">${data[index].title}</p>
-                <p class="author">${data[index].author}</p>
+                <p class="book-title" id=${data[index].title}>${data[index].title}</p>
+                <p class="author" id=${data[index].author}>${data[index].author}</p>
             </div>
         </div>`);
         };
@@ -94,8 +94,8 @@ function handleNewBook() {
                         <div class="del-btn"></div>
                         <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
-                            <p class="book-title">${title}</p>
-                            <p class="author">${fName} ${lName}</p>
+                            <p class="book-title" id=${title}>${title}</p>
+                            <p class="author" id=${fName} ${lName}>${fName} ${lName}</p>
                         </div>
                     </div>`)
         });
@@ -119,11 +119,22 @@ function editButtonHandler() {
         $('.data-modify-modal').removeClass('hide');
         const $this = $(this).parent();
         const targetEditId = $this.attr("id");
+        const targetEditTitle = $this.find('.book-title').text();
+        const targetEditAuthor = $this.find('.author').text();
         editId = targetEditId;
+        let editTitle = targetEditTitle
+        let editAuthor = targetEditAuthor;
         console.log(editId);
+        console.log(editTitle);
+        console.log(editAuthor);
+        $('.js-edit-form').find('.book-to-edit').text(editTitle + " - " + editAuthor);
+        $('.edit-btn').addClass('hide');
+        $('.del-btn').addClass('hide');
     });
     $('.close-mod-btn').on('click', function() {
         $('.data-modify-modal').addClass('hide');
+        $('.edit-btn').removeClass('hide');
+        $('.del-btn').removeClass('hide');
     });
 }
 
@@ -173,6 +184,8 @@ function handleEditBook() {
         $("html, body").animate({
             scrollTop: $(".book-display").offset().top
         }, 1000);
+        $('.edit-btn').removeClass('hide');
+        $('.del-btn').removeClass('hide');
     })
 }
 
@@ -181,9 +194,10 @@ function deletButtonHandler() {
     $(document).on('click touch', '.del-btn', function(event) {
         const $this = $(this).parent();
         const targetId = $this.attr("id");
-        const targetText = $this.text();
+        const targetEditTitle = $this.find('.book-title').text();
+        const targetEditAuthor = $this.find('.author').text();
 
-        $('.delete-confirm-modal').find('.bookData').text(targetText);
+        $('.delete-confirm-modal').find('.bookData').text(targetEditTitle + " - " + targetEditAuthor);
 
         $("html, body").animate({
             scrollTop: $("body").offset().top
