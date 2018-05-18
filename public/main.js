@@ -186,6 +186,8 @@ function handleEditBook() {
         }, 1000);
         $('.edit-btn').removeClass('hide');
         $('.del-btn').removeClass('hide');
+        getAllBooks();
+        getAllBooks();
     })
 }
 
