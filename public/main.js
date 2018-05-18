@@ -32,7 +32,7 @@ function getAllBooks() {
             <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
             <div class="book-info">
                 <p class="book-title" id=${data[index].title}>${data[index].title}</p>
-                <p class="author" id=${data[index].author}>${data[index].author}</p>
+                <p class="author">${data[index].author}</p>
             </div>
         </div>`);
         };
@@ -178,9 +178,9 @@ function handleEditBook() {
                         </div>
                     </div>`)
         })
+        getAllBooks();
         $('.data-modify-modal').addClass('hide');
         $('.grid-books').html('');
-        getAllBooks();
         $("html, body").animate({
             scrollTop: $(".book-display").offset().top
         }, 1000);
