@@ -178,7 +178,6 @@ function handleEditBook() {
                         </div>
                     </div>`)
         })
-        getAllBooks();
         $('.data-modify-modal').addClass('hide');
         $('.grid-books').html('');
         $("html, body").animate({
@@ -186,7 +185,6 @@ function handleEditBook() {
         }, 1000);
         $('.edit-btn').removeClass('hide');
         $('.del-btn').removeClass('hide');
-        getAllBooks();
         getAllBooks();
     })
 }
