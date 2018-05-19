@@ -7,13 +7,18 @@ The API for this project was created in the Representational Stae Transfer (REST
 
 All API requests are currently made to the `/books` endpoint.
 ## Screenshots
+Landing Page
 ![Mobile Landing Page](https://image.ibb.co/kJwMFo/mobile_Landing.png "mobile_Landing")
+Add Page
 ![Mobile Add Page](https://image.ibb.co/gpaHMT/mobile_Add.png "mobile_Add")
+Modify Page
 ![Mobile Modify Page](https://image.ibb.co/cC0Ovo/mobile_Modify.png "mobile_Modify")
+Delete Page
 ![Mobile Delete Page](https://image.ibb.co/cfWVao/mobile_Delete.png "mobile_Delete")
+Library View
 ![Mobile Library Page](https://image.ibb.co/nphE1T/mobile_Library.png "mobile_Library")
 
-##App Summary
+## App Summary
 
 This app was created to keep track of books that I would like to read in the future. This is just the begining for what I have envisioned for this project. It currently allows the user to retrieve their library of "wish list" books, create new entries, modify those entroes, and delete existing entries.
 
