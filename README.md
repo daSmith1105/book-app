@@ -7,16 +7,21 @@ The API for this project was created in the Representational Stae Transfer (REST
 
 All API requests are currently made to the `/books` endpoint.
 ## Screenshots
-Landing Page
+
 ![Mobile Landing Page](https://image.ibb.co/kJwMFo/mobile_Landing.png "mobile_Landing")
-Add Page
+Landing Page
+
 ![Mobile Add Page](https://image.ibb.co/gpaHMT/mobile_Add.png "mobile_Add")
-Modify Page
+Add Page
+
 ![Mobile Modify Page](https://image.ibb.co/cC0Ovo/mobile_Modify.png "mobile_Modify")
-Delete Page
+Modify Page
+
 ![Mobile Delete Page](https://image.ibb.co/cfWVao/mobile_Delete.png "mobile_Delete")
-Library View
+Delete Page
+
 ![Mobile Library Page](https://image.ibb.co/nphE1T/mobile_Library.png "mobile_Library")
+Library View
 
 ## App Summary
 
