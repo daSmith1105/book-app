@@ -1,16 +1,13 @@
 const createError = require('http-errors');
 const express = require('express');
-const cors = require('cors')
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
 const { DATABASE_URL, PORT } = require('./config');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const booksRouter = require('./routes/books');
 const mongoose = require('mongoose');
-const fs = require('fs');
-const multer = require('multer');
 mongoose.Promise = global.Promise;
 
 var app = express();
@@ -22,23 +19,16 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(logger('dev'));
+app.use(logger('common'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
 
 app.use(express.static('public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
 
-// closeServer needs access to a server object, but that only
-// gets created when `runServer` runs, so we declare `server` here
-// and then assign a value to it in run
 let server;
 
-// this function connects to our database, then starts the server
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
     return new Promise((resolve, reject) => {
         mongoose.connect(databaseUrl, err => {
@@ -57,8 +47,6 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
     });
 }
 
-// this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
 function closeServer() {
     return mongoose.disconnect().then(() => {
         return new Promise((resolve, reject) => {
@@ -73,8 +61,6 @@ function closeServer() {
     });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
     runServer().catch(err => console.error(err));
 }

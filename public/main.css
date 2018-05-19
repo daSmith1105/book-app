@@ -13,6 +13,7 @@
 body {
     margin-left: auto;
     margin-right: auto;
+    max-width: 1400px;
 }
 
 .mega-container {
@@ -21,7 +22,6 @@ body {
     background-size: contain;
     background-position: center 9em;
     background-attachment: fixed;
-    max-width: 1400px;
 }
 
 .grid-container {
@@ -60,15 +60,23 @@ body {
     font-size: 30px;
     padding: 10px;
     margin-top: 54%;
-    border: 2px solid black;
     border-radius: 10px;
     background: rgba(223, 85, 5, .6);
+    transition: .5s;
+}
+
+.add-btn:hover {
+    background: linear-gradient(rgba(223, 85, 5, .4), rgba(223, 85, 5, .8));
+    box-shadow: inset 2px 2px 2px 1px rgba(0, 0, 0, .4);
+    cursor: pointer;
 }
 
 .sticky-top {
-    background: rgba(95, 158, 160, .9);
+    background: rgba(95, 158, 160, .7);
     padding-top: .25em;
     padding-bottom: .25em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .wish-list {
@@ -80,24 +88,32 @@ body {
     margin-right: auto;
     margin-left: auto;
     text-align: center;
+    padding-right: 3%;
+    transition: .5s;
 }
 
 .scrollDown {
     height: 2em;
     width: 4em;
     display: inline;
-    margin-left: .65em;
 }
 
 .scrollUp {
     height: 2.5em;
     width: 5.5em;
     display: inline;
-    margin-right: .9em;
+}
+
+.scrollUp:hover,
+.scrollDown:hover {
+    cursor: pointer;
 }
 
 .book-display {
     background: rgba(0, 0, 0, .9);
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
 }
 
 .grid-books {
@@ -106,6 +122,9 @@ body {
     grid-template-columns: auto auto;
     justify-content: center;
     margin-top: .5em;
+    max-width: 1400px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .grid-books>div {
@@ -115,9 +134,12 @@ body {
     background: url('https://inspirationhut.net/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg');
     background-size: cover;
     font-size: 120%;
+    margin-bottom: .5em;
 }
 
-.grid-books>div:hover {}
+.grid-books>div:hover {
+    box-shadow: inset 2px 2px 2px 1px rgba(14, 33, 40, 0.6);
+}
 
 .book-img {
     clear: both;
@@ -137,6 +159,15 @@ body {
     background-size: contain;
     height: 25px;
     width: 25px;
+    padding: .5em;
+    transition: .5s;
+}
+
+.edit-btn:hover,
+.del-btn:hover {
+    border: 4px solid teal;
+    border-radius: .1em;
+    cursor: pointer;
 }
 
 .del-btn {
@@ -147,6 +178,8 @@ body {
     background-size: contain;
     height: 25px;
     width: 25px;
+    padding: .5em;
+    transition: .5s;
 }
 
 .data-input-modal,
@@ -174,6 +207,14 @@ body {
     height: 35px;
     width: 35px;
     margin-left: .5em;
+    transition: .5s;
+}
+
+.close-btn:hover,
+.close-mod-btn:hover {
+    border: 4px solid teal;
+    border-radius: .5em;
+    cursor: pointer;
 }
 
 .delete-confirm-modal {
@@ -199,12 +240,19 @@ body {
 
 .del-deny-btn,
 .del-confirm-btn {
-    border: 2px solid black;
     border-radius: 10px;
     margin: .5em;
     background: rgba(223, 85, 5, .6);
     padding: .5em;
     font-size: 120%;
+    transition: .5s;
+}
+
+.del-deny-btn:hover,
+.del-confirm-btn:hover {
+    box-shadow: inset 2px 2px 2px 1px rgba(0, 0, 0, .4);
+    background: linear-gradient(rgba(223, 85, 5, .4), rgba(223, 85, 5, .8));
+    cursor: pointer;
 }
 
 .del-btn-group {
@@ -253,13 +301,21 @@ input {
 
 .add-book-btn,
 .modify-book-btn {
-    border: 2px solid black;
     border-radius: 10px;
     font-size: 140%;
     padding: .4em;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    background: rgba(223, 85, 5, .6);
+    transition: .5s;
+}
+
+.add-book-btn:hover,
+.modify-book-btn:hover {
+    background: linear-gradient(rgba(223, 85, 5, .4), rgba(223, 85, 5, .8));
+    box-shadow: inset 2px 2px 2px 1px rgba(0, 0, 0, .4);
+    cursor: pointer;
 }
 
 @media (min-width: 560px) {

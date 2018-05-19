@@ -19,16 +19,13 @@ function scrollDown() {
     })
 }
 
-//CRUD operations
-//Get all books on app start
-
 function getAllBooks() {
     $.getJSON(WEB_API_URL, function(data) {
         for (let index in data) {
             $('.book-list').prepend(
-                `<div class="book" id=${data[index].id}>
-            <div class="edit-btn"></div>
-            <div class="del-btn"></div>
+                `<div class="book" id=${data[index].id} aria-live="assertive">
+            <button class="edit-btn" title="Edit this book"></button>
+            <button class="del-btn" title="Delete this book"></button>
             <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
             <div class="book-info">
                 <p class="book-title" id=${data[index].title}>${data[index].title}</p>
@@ -39,8 +36,6 @@ function getAllBooks() {
     });
 }
 
-
-//Show modal to create a new book
 function addButtonHandler() {
     $('.js-add').on('click touch', function() {
         $('.data-input-modal').removeClass('hide');
@@ -56,7 +51,6 @@ function addButtonHandler() {
     });
 }
 
-//Create a new book
 function handleNewBook() {
     $('.js-input-form').on('submit', function(event) {
         event.preventDefault();
@@ -80,18 +74,15 @@ function handleNewBook() {
             }
         };
 
-        console.log(bookObj);
-
-
         $.ajax({
             url: WEB_API_URL,
             type: "POST",
             data: JSON.stringify(bookObj),
             contentType: "application/json",
             complete: $('.book-list').prepend(
-                `<div class="book">
-                        <div class="edit-btn"></div>
-                        <div class="del-btn"></div>
+                `<div class="book" aria-live="assertive">
+                        <button class="edit-btn" title="Edit this book"></button>
+                        <button class="del-btn" title="Delete this book"></button>
                         <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title" id=${title}>${title}</p>
@@ -99,17 +90,16 @@ function handleNewBook() {
                         </div>
                     </div>`)
         });
+
         $('.data-input-modal').addClass('hide');
         $("html, body").animate({
             scrollTop: $(".book-display").offset().top
         }, 1000);
-        //add modal to confirm new book added - title and author
-        //add close button that performs getAllBooks()
     })
 }
 
-//Show modal to update a book
 let editId;
+let $toDelete;
 
 function editButtonHandler() {
     $(document).on('click touch', '.edit-btn', function() {
@@ -118,19 +108,19 @@ function editButtonHandler() {
         }, 1000);
         $('.data-modify-modal').removeClass('hide');
         const $this = $(this).parent();
+        $toDelete = $(this).parent();
         const targetEditId = $this.attr("id");
         const targetEditTitle = $this.find('.book-title').text();
         const targetEditAuthor = $this.find('.author').text();
         editId = targetEditId;
         let editTitle = targetEditTitle
         let editAuthor = targetEditAuthor;
-        console.log(editId);
-        console.log(editTitle);
-        console.log(editAuthor);
+
         $('.js-edit-form').find('.book-to-edit').text(editTitle + " - " + editAuthor);
         $('.edit-btn').addClass('hide');
         $('.del-btn').addClass('hide');
     });
+
     $('.close-mod-btn').on('click', function() {
         $('.data-modify-modal').addClass('hide');
         $('.edit-btn').removeClass('hide');
@@ -138,11 +128,9 @@ function editButtonHandler() {
     });
 }
 
-//Update and existing book
 function handleEditBook() {
     $('.js-edit-form').on('submit', function(event) {
         event.preventDefault();
-        console.log(editId);
         const titleInput = $(event.currentTarget).find('.js-title-edit');
         const fNameInput = $(event.currentTarget).find('.js-fName-edit');
         const lNameInput = $(event.currentTarget).find('.js-lName-edit');
@@ -167,29 +155,29 @@ function handleEditBook() {
             type: 'PUT',
             data: JSON.stringify(updateObj),
             contentType: "application/json",
-            complete: $('.book-list').prepend(
-                `<div class="book">
-                        <div class="edit-btn"></div>
-                        <div class="del-btn"></div>
+            complete: function() {
+                ($toDelete).remove();
+                $('.book-list').prepend(
+                    `<div class="book" aria-live="assertive">
+                        <button class="edit-btn" title="Edit this book"></button>
+                        <button class="del-btn" title="Delete this book"></button>
                         <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
                             <p class="author">${fName} ${lName}</p>
                         </div>
                     </div>`)
-        })
+            }
+        });
         $('.data-modify-modal').addClass('hide');
-        $('.grid-books').html('');
         $("html, body").animate({
             scrollTop: $(".book-display").offset().top
         }, 1000);
         $('.edit-btn').removeClass('hide');
         $('.del-btn').removeClass('hide');
-        getAllBooks();
     })
 }
 
-//Delete a current book
 function deletButtonHandler() {
     $(document).on('click touch', '.del-btn', function(event) {
         const $this = $(this).parent();
@@ -203,10 +191,14 @@ function deletButtonHandler() {
             scrollTop: $("body").offset().top
         }, 1000);
 
+        $('.edit-btn').css('display', 'none');
+        $('.del-btn').addClass('hide');
         $('.delete-confirm-modal').removeClass('hide');
 
         $('.delete-confirm-modal').on('click', '.del-deny-btn', function() {
             $('.delete-confirm-modal').addClass('hide');
+            $('.edit-btn').css('display', 'block');
+            $('.del-btn').removeClass('hide');
         })
 
         $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
@@ -218,9 +210,12 @@ function deletButtonHandler() {
                 complete: $this.closest('.book').remove()
             });
             $('.delete-confirm-modal').addClass('hide');
+            $('.edit-btn').css('display', 'block');
+            $('.del-btn').removeClass('hide');
         })
     })
 }
+
 
 function appLoad() {
     $(getAllBooks);
@@ -232,4 +227,5 @@ function appLoad() {
     $(scrollUp);
     $(scrollDown);
 }
+
 $(appLoad);

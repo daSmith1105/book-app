@@ -19,25 +19,27 @@
                 <div class='grid-container'>
                     <div class="logo-container">
                         <h1 class="app-name">Wishful Reading</h1>
-                        <img class="logo" src="https://image.freepik.com/free-icon/man-reading_318-59223.jpg" alt="man reading">
+                        <img class="logo" src="https://image.freepik.com/free-icon/man-reading_318-59223.jpg" alt="Image of person reading">
                     </div>
                     <p class="add-prompt">Add a book you would like to read to your Wishful Reading list</p>
-                    <button type="submit" class="add-btn js-add">ADD A BOOK</button>
+                    <button type="submit" class="add-btn js-add" role="submit">ADD A BOOK</button>
                 </div>
             </section>
-            <div class="book-display" aria-live="assertive">
-                <div class="sticky-top">
-                    <p class='wish-list'> My Wish List Books</p>
-                    <div class="scroll-btns">
-                        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/196766-200.png" class="scrollUp">
-                        <img src="https://cdn4.iconfinder.com/data/icons/browser-ui-small-size-optimized-set/154/arrow-bottom-down-navigation-browser-512.png" class="scrollDown">
+            <section role="region">
+                <div class="book-display">
+                    <div class="sticky-top">
+                        <p class='wish-list'> My Wish List Books</p>
+                        <div class="scroll-btns">
+                            <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/196766-200.png" class="scrollUp" alt="Scroll Up">
+                            <img src="https://cdn4.iconfinder.com/data/icons/browser-ui-small-size-optimized-set/154/arrow-bottom-down-navigation-browser-512.png" class="scrollDown" alt="Scroll Down">
+                        </div>
                     </div>
+                    <div class="book-list grid-books"></div>
                 </div>
-                <div class="book-list grid-books" aria-live="assertive"></div>
-            </div>
-
+            </section>
+            <!-- Modals -->
             <div class="delete-confirm-modal hide">
-                <h1>Are you sure you want to delete:</h1>
+                <h1 aria-live="asertive">Are you sure you want to delete:</h1>
                 <p class="bookData"></p>
                 <div class="del-btn-group">
                     <button class="del-deny-btn">Cancel</button>
@@ -48,7 +50,7 @@
             <div class="data-input-modal hide">
                 <form class="js-input-form grid-form" action="#">
                     <button type="button" class="close-btn"></button>
-                    <h1 class="form-header">Add a New Book to Your Wishlist</h1>
+                    <h1 class="form-header" aria-live="assertive">Add a New Book to Your Wishlist</h1>
                     <fieldset>
                         <legend>Book Title</legend>
                         <label for="title" class="title-label">Title:</label>
@@ -69,7 +71,7 @@
             <div class="data-modify-modal hide">
                 <form class="js-edit-form grid-form" action="#">
                     <button type="button" class="close-mod-btn"></button>
-                    <h1 class="form-header">Modify this Book in Your Wishlist</h1>
+                    <h1 class="form-header" aria-live="assertive">Modify this Book in Your Wishlist</h1>
                     <p class="book-to-edit"></p>
                     <fieldset>
                         <legend>Book Title</legend>
