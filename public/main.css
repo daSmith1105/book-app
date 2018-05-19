@@ -161,6 +161,7 @@ body {
     width: 25px;
     padding: .5em;
     transition: .5s;
+    z-index: 5;
 }
 
 .edit-btn:hover,
@@ -180,6 +181,7 @@ body {
     width: 25px;
     padding: .5em;
     transition: .5s;
+    z-index: 5;
 }
 
 .data-input-modal,
