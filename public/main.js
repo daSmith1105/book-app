@@ -39,14 +39,14 @@ function getAllBooks() {
 function addButtonHandler() {
     $('.js-add').on('click', function() {
         $('.data-input-modal').removeClass('hide');
-        $('.edit-btn').addClass('hide');
+        $('.edit-btn').css('display', 'none');
         $('.del-btn').addClass('hide');
 
     });
 
     $('.close-btn').on('click', function() {
         $('.data-input-modal').addClass('hide');
-        $('.edit-btn').removeClass('hide');
+        $('.edit-btn').css('display', 'block');
         $('.del-btn').removeClass('hide');
     });
 }
@@ -118,13 +118,13 @@ function editButtonHandler() {
         let editAuthor = targetEditAuthor;
 
         $('.js-edit-form').find('.book-to-edit').text(editTitle + " - " + editAuthor);
-        $('.edit-btn').addClass('hide');
+        $('.edit-btn').css('display', 'none');
         $('.del-btn').addClass('hide');
     });
 
     $('.close-mod-btn').on('click', function() {
         $('.data-modify-modal').addClass('hide');
-        $('.edit-btn').removeClass('hide');
+        $('.edit-btn').css('display', 'block');
         $('.del-btn').removeClass('hide');
     });
 }
