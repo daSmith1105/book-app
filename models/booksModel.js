@@ -21,7 +21,7 @@ BookSchema.methods.serialize = function() {
     return {
         id: this._id,
         title: this.title,
-        author: this.authorName,
+        author: this.authorName, 
         image: this.image,
         created: this.created
     };
