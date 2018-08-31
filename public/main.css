@@ -11,24 +11,23 @@
 }
 
 body {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1400px;
+    width: 100vw;
 }
 
 .mega-container {
     background-image: url('./resources/book_background.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center 9em;
     background-attachment: fixed;
+    background-position: center 20vw;
+    width: 100vw;
 }
 
 .grid-container {
     display: grid;
     grid-template-areas: '. . . app-name app-name . . .' '. . . . . . . .' '. . . add-prompt add-prompt . . .' '. . . add-btn add-btn . . .';
-    padding: 10px;
     justify-content: center;
+    width: 100vw;
 }
 
 .logo-container {
@@ -37,6 +36,7 @@ body {
     font-size: 300%;
     margin-top: .5em;
     position: relative;
+    top: -.5em;
 }
 
 .logo {
@@ -52,16 +52,24 @@ body {
     text-align: center;
     font-size: 140%;
     color: black;
+    margin-top: -.85em;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 1em;
 }
 
 .add-btn {
     grid-area: add-btn;
     text-align: center;
+    position: relative;
+    top: 2em;
+    width: 60%;;
+    max-width: 300px;
     font-size: 30px;
+    margin-right: auto;
+    margin-left: auto;
     padding: 10px;
-    margin-top: 54%;
     border-radius: 10px;
-    background: rgba(223, 85, 5, .6);
+    background: rgba(223, 85, 5, .7);
     transition: .5s;
 }
 
@@ -72,11 +80,12 @@ body {
 }
 
 .sticky-top {
-    background: rgba(95, 158, 160, .7);
+    background: rgba(95, 158, 160, 1);
     padding-top: .25em;
     padding-bottom: .25em;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    left: 0;
+    width: 100vw;
 }
 
 .wish-list {
@@ -93,16 +102,12 @@ body {
 }
 
 .scrollDown {
-    height: 2em;
-    width: 4em;
+    height: auto;
+    width: 25%;
+    max-width: 2em;
     display: inline;
 }
 
-.scrollUp {
-    height: 2.5em;
-    width: 5.5em;
-    display: inline;
-}
 
 .scrollUp:hover,
 .scrollDown:hover {
@@ -110,10 +115,15 @@ body {
 }
 
 .book-display {
-    background: rgba(0, 0, 0, .9);
+    background: linear-gradient( teal, grey, #f3a484, teal);
     margin-right: auto;
     margin-left: auto;
     text-align: center;
+    position: relative;
+    top: 5em;
+    height: 70vh;
+    max-height: auto;
+    width: 100vw;
 }
 
 .grid-books {
@@ -122,9 +132,10 @@ body {
     grid-template-columns: auto auto;
     justify-content: center;
     margin-top: .5em;
-    max-width: 1400px;
+    width:
     margin-right: auto;
     margin-left: auto;
+    background: rgba(0, 0, 0, .7);
 }
 
 .grid-books>div {
@@ -135,6 +146,7 @@ body {
     background-size: cover;
     font-size: 120%;
     margin-bottom: .5em;
+
 }
 
 .grid-books>div:hover {
