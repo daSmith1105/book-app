@@ -18,7 +18,7 @@ function getAllBooks() {
                 `<div class="book" id=${data[index].id} aria-live="assertive">
             <button class="edit-btn" title="Edit this book"></button>
             <button class="del-btn" title="Delete this book"></button>
-            <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
+            <div class="book-img"><img src=${data[index].image}></div>
             <div class="book-info">
                 <p class="book-title" id=${data[index].title}>${data[index].title}</p>
                 <p class="author">${data[index].author}</p>
@@ -163,7 +163,7 @@ function saveBook() {
         $.ajax({
                 url: WEB_API_URL,
                 type: "POST",
-                data: JSON.stringify(bookObj),
+                data: bookObj,
                 contentType: "application/json",
                 complete: $('.book-list').prepend(
                                                     `<div class="book" aria-live="assertive">

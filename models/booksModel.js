@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const BookSchema = mongoose.Schema({
     title: { type: String, required: true, max: 60 },
     author: { type: String, required: true, max: 40},
-    image: { type: String, default: 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjHpZy38dHdAhVh0oMKHQDWBscQjRx6BAgBEAU&url=http%3A%2F%2Fselo.l-ink.co%2Fgeneric-book%2F&psig=AOvVaw1sGE8EgjcLJ-l6RYCZzk7z&ust=1537818189179876' },
+    image: { type: String, required: true },
     created: { type: Date, default: Date.now }
 });
 
