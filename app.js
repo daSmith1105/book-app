@@ -29,7 +29,7 @@ app.use('/books', booksRouter);
 
 let server;
 
-function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+function runServer(databaseUrl = 'mongodb://admin:das1105@ds237815.mlab.com:37815/library', port = PORT) {
     return new Promise((resolve, reject) => {
         mongoose.connect(databaseUrl, err => {
             if (err) {

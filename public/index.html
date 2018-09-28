@@ -16,7 +16,8 @@
     <div class="mega-container">
         <div class="fixed-background">
             <section role="region" class="landing">
-                <!-- Home page add book-->
+
+<!-- Home Page Add Book-->
                 <div class='grid-container'>
                     <div class="logo-container">
                         <h1 class="app-name">Wishful Reading</h1>
@@ -36,16 +37,10 @@
                     <div class="book-list grid-books"></div>
                 </div>
             </section>
-            <!-- Modals -->
-            <div class="delete-confirm-modal hide">
-                <h1 aria-live="asertive">Are you sure you want to delete:</h1>
-                <p class="bookData"></p>
-                <div class="del-btn-group">
-                    <button class="del-deny-btn">Cancel</button>
-                    <button class="del-confirm-btn">Delete</button>
-                </div>
-            </div>
 
+            <!-- Modals -->
+
+<!-- New Book Input Form / Modal-->
             <div class="data-input-modal hide">
                 <form class="js-input-form grid-form" action="#">
                     <button type="button" class="close-btn"></button>
@@ -58,15 +53,25 @@
                     <fieldset class="author-fieldset">
                         <legend>Author</legend>
                         <label for="fName" class="fName-label">First:</label>
-                        <input class="js-fName-input fName-input" name="fName" required>
+                        <input class="js-fName-input fName-input" name="fName" >
                         <br><br>
                         <label for="lName">Last:</label>
-                        <input class=" js-lName-input lName-input " name="lName" required>
+                        <input class=" js-lName-input lName-input " name="lName" >
                     </fieldset>
                     <button class="add-book-btn" type="submit">Add This Book</button>
                 </form>
             </div>
 
+<!-- Select Book Cover Form / Modal -->
+            <div class="cover-select-modal hide">
+                <div class="cancel-select">X</div>
+                <form class="cover-select-form" action="#">
+                    <div class="cover-select-content"></div>
+                    <button class="cover-continue-btn continue" type="submit">CONTINUE</button>
+                </form>
+            </div>
+
+<!-- Edit Existing Book Form / Modal -->
             <div class="data-modify-modal hide">
                 <form class="js-edit-form grid-form" action="#">
                     <button type="button" class="close-mod-btn"></button>
@@ -88,6 +93,17 @@
                     <button class="modify-book-btn" type="submit">Modify This Book</button>
                 </form>
             </div>
+
+<!-- Delete Existing Book Modal -->
+            <div class="delete-confirm-modal hide">
+                    <h1 aria-live="asertive">Are you sure you want to delete:</h1>
+                    <p class="bookData"></p>
+                    <div class="del-btn-group">
+                        <button class="del-deny-btn">Cancel</button>
+                        <button class="del-confirm-btn">Delete</button>
+                    </div>
+                </div>
+
         </div>
     </div>
     <script src="main.js "></script>

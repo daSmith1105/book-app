@@ -2,15 +2,13 @@ const { Book } = require('../models/booksModel.js');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const fs = require('fs');
-const multer = require('multer');
 mongoose.Promise = global.Promise;
 
 app.use(express.json());
 
 // Create a new book
 app.post('/', (req, res) => {
-    const requiredFields = ['title', 'author'];
+    const requiredFields = ['title', 'author', 'image'];
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
