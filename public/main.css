@@ -219,6 +219,10 @@ body {
     font-size: 140%;
 }
 
+.fName-edit, .title-edit {
+    width: 80%;
+}
+
 .close-btn,
 .close-mod-btn {
     background: url('./resources/delete_icon.png');
@@ -396,10 +400,12 @@ input {
     margin-bottom: 1em;
     margin-top: 1em;
     transition: .5s;
+    clear: both;
 }
 
 .cover-continue-btn:hover {
     background-color: green;
+    cursor: pointer;
 }
 .no-cover .no-cover-title {
     clear: both;
@@ -426,36 +432,18 @@ input {
     overflow: hidden;
     position: relative;
     transition: .5s;
+    border: 4px solid rgba(0,0,0,0);
 }
 
-.book-cover:hover .overlay {
-    opacity: 1;
+.book-cover {
     cursor: pointer;
 }
 
-.radio.selected {
+.border {
     border: 4px solid red;
+
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    text-align: center;
-    padding-top: 45%;
-    opacity: 0;
-    -webkit-transition: opacity 0.25s ease;
-    -moz-transition: opacity 0.25s ease;
-    color: white;
-    letter-spacing: 2px;
-}
-
-.plus {
-    font-size: 100%;
-}
 
 @media (min-width: 560px) {
     .grid-books {

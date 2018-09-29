@@ -65,7 +65,7 @@ app.put('/:id', (req, res) => {
     }
 
     const updated = {};
-    const updateableFields = ['title', 'author'];
+    const updateableFields = ['title', 'author', 'image'];
     updateableFields.forEach(field => {
         if (field in req.body) {
             updated[field] = req.body[field];

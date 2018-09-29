@@ -6,7 +6,7 @@ const WEB_API_URL = 'https://wishfulreading.herokuapp.com/books';
 
 const GOOGLE_BOOK_URL = "https://www.googleapis.com/books/v1/volumes?q=";
 const GOOGLE_API_KEY = "&key=AIzaSyBrBiWNa5_vKVtvNdgKjB-Ff4xg3eZMFdk";
-const MAX_RESULTS = "&maxResults=4";
+const MAX_RESULTS = "&maxResults=7";
 const MEDIA_TYPE = "&printType=books";
 
 
@@ -148,7 +148,16 @@ function handleBookSearch() {
                                                     <p class="book-author">${currentAuthor}</p>
                                                 </div>`);
                         }
-                    });        
+                    }); 
+                    
+                    // $('.cover-select-content').append( `<div class="book-cover" key=${google_data[index].id}>
+                                                
+
+                    //                                 <img class="book-image" src=${google_data[index].volumeInfo.imageLinks.thumbnail} alt="book cover" />
+                    //                                 <p class="book-title">${google_data[index].volumeInfo.title}</p>
+                    //                                 <p class="book-author">${currentAuthor}</p>
+                    //                             </div>`);
+                    //     }
 
                 };
             });
@@ -157,7 +166,8 @@ function handleBookSearch() {
 
 function getCoverAndData() {
     $(document).on('click', '.book-cover', function() {
-            
+            $('.book-cover').removeClass('border');
+            $(this).addClass('border');
             activeTitle=$(this).find('.book-title').text();
             activeAuthor=$(this).find('.book-author').text();
             let rawImage=$(this).find('.book-image').attr('src');
@@ -224,6 +234,7 @@ function saveBook() {
 
 let editId;
 let $toDelete;
+let editImage;
 
 function editButtonHandler() {
     $(document).on('click', '.edit-btn', function(event) {
@@ -237,11 +248,15 @@ function editButtonHandler() {
         const targetEditId = $this.attr("id");
         const targetEditTitle = $this.find('.book-title').text();
         const targetEditAuthor = $this.find('.author').text();
+        editImage = $this.find('.book-img img').attr('src');
+        console.log(editImage);
         editId = targetEditId;
         let editTitle = targetEditTitle
         let editAuthor = targetEditAuthor;
 
         $('.js-edit-form').find('.book-to-edit').text(editTitle + " - " + editAuthor);
+        $('.js-title-edit').val(`${editTitle}`)
+        $('.js-fName-edit').val(`${editAuthor}`)
         $('.edit-btn').prop('disabled', true);
         $('.del-btn').prop('disabled', true);
     });
@@ -259,20 +274,21 @@ function handleEditBook() {
         const titleInput = $(event.currentTarget).find('.js-title-edit');
         const fNameInput = $(event.currentTarget).find('.js-fName-edit');
         const lNameInput = $(event.currentTarget).find('.js-lName-edit');
+        const image = $(event.currentTarget).find('.book-img img').attr('src');
+        console.log(image);
+
         let title = titleInput.val();
         let fName = fNameInput.val();
         let lName = lNameInput.val();
         titleInput.val('');
         fNameInput.val('');
         lNameInput.val('');
-
+      
         let updateObj = {
             "id": `${editId}`,
             "title": `${title}`,
-            "author": {
-                "firstName": `${fName}`,
-                "lastName": `${lName}`
-            }
+            "author": `${fName}`,
+            "image": `${editImage}`
         };
 
         $.ajax({
@@ -286,10 +302,10 @@ function handleEditBook() {
                     `<div class="book" aria-live="assertive">
                         <button class="edit-btn" title="Edit this book"></button>
                         <button class="del-btn" title="Delete this book"></button>
-                        <div class="book-img"><img src="http://freestock.ca/vintage_ornamental_book_cover__sepia_nostalgia_sjpg4647.jpg"></div>
+                        <div class="book-img"><img src=${editImage}></div>
                         <div class="book-info">
                             <p class="book-title">${title}</p>
-                            <p class="author">${fName} ${lName}</p>
+                            <p class="author">${fName}</p>
                         </div>
                     </div>`)
             }
@@ -298,8 +314,8 @@ function handleEditBook() {
         $("html, body").animate({
             scrollTop: $(".book-display").offset().top
         }, 1000);
-        $('.edit-btn').removeClass('hide');
-        $('.del-btn').removeClass('hide');
+        $('.edit-btn').prop('disabled', false);
+        $('.del-btn').prop('disabled', false);
     })
 }
 
@@ -336,7 +352,7 @@ function deletButtonHandler() {
                 complete: $this.closest('.book').remove()
             });
             $('.delete-confirm-modal').addClass('hide');
-            $$('.edit-btn').prop('disabled', false);
+            $('.edit-btn').prop('disabled', false);
             $('.del-btn').prop('disabled', false);
         })
     })
