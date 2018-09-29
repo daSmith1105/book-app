@@ -13,9 +13,7 @@ const MEDIA_TYPE = "&printType=books";
 
 function getAllBooks() {
     $.getJSON(WEB_API_URL, function(data) {
-        console.log(data);
         for (let index in data) {
-            console.log(data[index].author);
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id} aria-live="assertive">
             <button class="edit-btn" title="Edit this book"></button>
@@ -33,15 +31,21 @@ function getAllBooks() {
 function addButtonHandler() {
     $('.js-add').on('click', function() {
         $('.data-input-modal').removeClass('hide');
-        $('.edit-btn').css('display', 'none');
-        $('.del-btn').addClass('hide');
+        $('.edit-btn').prop('disabled', true);
+        $('.del-btn').prop('disabled', true);
 
     });
 
     $('.close-btn').on('click', function() {
         $('.data-input-modal').addClass('hide');
-        $('.edit-btn').css('display', 'block');
-        $('.del-btn').removeClass('hide');
+        $('.edit-btn').prop('disabled', false);
+        $('.edit-btn').prop('disabled', false);
+        const titleInput = $(document).find('.js-title-input');
+        const fNameInput = $(document).find('.js-fName-input');
+        const lNameInput = $(document).find('.js-lName-input');
+        titleInput.val('');
+        fNameInput.val('');
+        lNameInput.val('');
     });
 }
 
@@ -85,6 +89,12 @@ function handleBookSearch() {
             $('.cancel-select').on('click', function() {
                 $('.cover-select-modal').addClass('hide');
                 $('.data-input-modal').removeClass('hide');
+                const titleInput = $(document).find('.js-title-input');
+                const fNameInput = $(document).find('.js-fName-input');
+                const lNameInput = $(document).find('.js-lName-input');
+                titleInput.val('');
+                fNameInput.val('');
+                lNameInput.val('');
             });
 
             if (data.totalItems < 1) {
@@ -168,7 +178,9 @@ let activeImage = '';
 function saveBook() {
     $(document).on('click', '.cover-continue-btn', function(e) {
         e.preventDefault();
-
+        if(activeTitle === ''){
+            alert('please select a book or click the "X" to cancel');
+        } else {
         let bookObj = {
             "title": activeTitle,
             "author": activeAuthor,
@@ -192,14 +204,22 @@ function saveBook() {
                                                             </div>
                                                         </div>`)
                 });
-        // titleInput.val('');
-        // fNameInput.val('');
-        // lNameInput.val('');
+
+        const titleInput = $(document).find('.js-title-input');
+        const fNameInput = $(document).find('.js-fName-input');
+        const lNameInput = $(document).find('.js-lName-input');
+        titleInput.val('');
+        fNameInput.val('');
+        lNameInput.val('');
 
         $('.data-input-modal').addClass('hide');
         $('.cover-select-modal').addClass('hide');
-    })
-}
+
+        activeTitle = '';
+        activeAuthor = '';
+        activeImage = '';
+    }
+})}
 
 
 let editId;
@@ -222,14 +242,14 @@ function editButtonHandler() {
         let editAuthor = targetEditAuthor;
 
         $('.js-edit-form').find('.book-to-edit').text(editTitle + " - " + editAuthor);
-        $('.edit-btn').css('display', 'none');
-        $('.del-btn').addClass('hide');
+        $('.edit-btn').prop('disabled', true);
+        $('.del-btn').prop('disabled', true);
     });
 
     $('.close-mod-btn').on('click', function() {
         $('.data-modify-modal').addClass('hide');
-        $('.edit-btn').css('display', 'block');
-        $('.del-btn').removeClass('hide');
+        $('.edit-btn').prop('disabled', false);
+        $('.del-btn').prop('disabled', false);
     });
 }
 
@@ -297,14 +317,14 @@ function deletButtonHandler() {
             scrollTop: $("body").offset().top
         }, 1000);
 
-        $('.edit-btn').css('display', 'none');
-        $('.del-btn').addClass('hide');
+        $('.edit-btn').prop('disabled', true);
+        $('.del-btn').prop('disabled', true);
         $('.delete-confirm-modal').removeClass('hide');
 
         $('.delete-confirm-modal').on('click', '.del-deny-btn', function() {
             $('.delete-confirm-modal').addClass('hide');
-            $('.edit-btn').css('display', 'block');
-            $('.del-btn').removeClass('hide');
+            $('.edit-btn').prop('disabled', false);
+            $('.del-btn').prop('disabled', false);
         })
 
         $('.delete-confirm-modal').on('click', '.del-confirm-btn', function() {
@@ -316,8 +336,8 @@ function deletButtonHandler() {
                 complete: $this.closest('.book').remove()
             });
             $('.delete-confirm-modal').addClass('hide');
-            $('.edit-btn').css('display', 'block');
-            $('.del-btn').removeClass('hide');
+            $$('.edit-btn').prop('disabled', false);
+            $('.del-btn').prop('disabled', false);
         })
     })
 }
