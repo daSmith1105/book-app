@@ -6,7 +6,7 @@ const WEB_API_URL = 'https://wishfulreading.herokuapp.com/books';
 
 const GOOGLE_BOOK_URL = "https://www.googleapis.com/books/v1/volumes?q=";
 const GOOGLE_API_KEY = "&key=AIzaSyBrBiWNa5_vKVtvNdgKjB-Ff4xg3eZMFdk";
-const MAX_RESULTS = "&maxResults=7";
+const MAX_RESULTS = "&maxResults=8";
 const MEDIA_TYPE = "&printType=books";
 
 
@@ -168,13 +168,14 @@ function getCoverAndData() {
     $(document).on('click', '.book-cover', function() {
             $('.book-cover').removeClass('border');
             $(this).addClass('border');
+            $('.add-error').removeClass('highlight');
+            $('.add-error').text('');
             activeTitle=$(this).find('.book-title').text();
             activeAuthor=$(this).find('.book-author').text();
             let rawImage=$(this).find('.book-image').attr('src');
             let processedImage=rawImage.slice(4, rawImage.length);
             activeImage=`https${processedImage}`
 
-            console.log(activeImage);
             return(activeTitle, activeAuthor, activeImage);
             
     });
@@ -189,15 +190,15 @@ function saveBook() {
     $(document).on('click', '.cover-continue-btn', function(e) {
         e.preventDefault();
         if(activeTitle === ''){
-            alert('please select a book or click the "X" to cancel');
+           $('.add-error').addClass('highlight');
+           $('.add-error').text('No book selected. Please select a book to continue.')
         } else {
         let bookObj = {
             "title": activeTitle,
             "author": activeAuthor,
             "image": activeImage
         };
-        console.log(bookObj);
-
+        
         $.ajax({
                 url: WEB_API_URL,
                 type: "POST",

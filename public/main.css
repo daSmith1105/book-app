@@ -108,12 +108,6 @@ body {
     display: inline;
 }
 
-
-.scrollUp:hover,
-.scrollDown:hover {
-    cursor: pointer;
-}
-
 .book-display {
     background: linear-gradient( teal, grey, #f3a484, teal);
     margin-right: auto;
@@ -354,8 +348,17 @@ input {
     max-width: 960px;
     border: 14px solid rgba(223, 85, 5, .3);
     border-radius: 10px;
-    height: 460px;
     text-align: center;
+    min-height: auto;
+}
+
+.cover-select-form {
+    background: url('./resources/book_item_background.jpg');
+    position: relative;
+    border: 3px solid black;
+    min-height: auto;
+    border-radius: 5px;
+    padding-bottom: 8em;
 }
 
 .cover-select-content {
@@ -363,12 +366,15 @@ input {
     clear: both;
     padding-top: 1em;
     text-align: center;
+    min-height: auto;
 }
 
 .cover-select-modal .cancel-select {
     height: 40px;
     width: 40px;
-    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: .5em;
     background-color: red;
     color: white;
@@ -376,6 +382,7 @@ input {
     border-bottom-right-radius: 1em;
     transition: .5s;
     border: 2px solid rgba(0,0,0,0);
+    
 }
 
 .cover-select-modal .cancel-select:hover {
@@ -393,18 +400,42 @@ input {
     margin-bottom: 1em;
 }
 
+.add-error {
+    clear: both;
+    font-size: 130%;
+    color: red;
+    transition: .5;
+    margin-top: .5em;
+}
+
+.highlight {
+    background-color: yellow;
+    padding: .5em;
+}
 
 .cover-continue-btn {
+    position: absolute;
+    bottom: .5em;
+    right: 0;
+    left: 0;
+    margin: auto;
     text-align: center;
     padding: .5em;
     margin-bottom: 1em;
-    margin-top: 1em;
+    margin-top: .5em;
     transition: .5s;
+    width: 50%;
+    max-width: 300px;
+    border-radius: 10px;
+    font-size: 140%;
+    padding: .4em;
+    background: rgba(223, 85, 5, .6);
     clear: both;
 }
 
 .cover-continue-btn:hover {
-    background-color: green;
+    background: linear-gradient(rgba(223, 85, 5, .4), rgba(223, 85, 5, .8));
+    box-shadow: inset 2px 2px 2px 1px rgba(0, 0, 0, .4);
     cursor: pointer;
 }
 .no-cover .no-cover-title {
@@ -425,12 +456,12 @@ input {
 }
 
 .book-cover {
-    height: 280px;
+    height: 310px;
     width: 180px;
     float: left;
     margin-right: 2em;
+    margin-top: 1em;
     overflow: hidden;
-    position: relative;
     transition: .5s;
     border: 4px solid rgba(0,0,0,0);
 }
@@ -440,7 +471,8 @@ input {
 }
 
 .border {
-    border: 4px solid red;
+    border: 4px solid rgba(223, 85, 5, .6);
+    border-radius: .5em;
 
 }
 
