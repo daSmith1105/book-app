@@ -13,7 +13,9 @@ const MEDIA_TYPE = "&printType=books";
 
 function getAllBooks() {
     $.getJSON(WEB_API_URL, function(data) {
+        console.log(data);
         for (let index in data) {
+            console.log(data[index].author);
             $('.book-list').prepend(
                 `<div class="book" id=${data[index].id} aria-live="assertive">
             <button class="edit-btn" title="Edit this book"></button>
@@ -109,20 +111,31 @@ function handleBookSearch() {
            
                 Object.keys(google_data).map((index) => {
                     if(!google_data[index].volumeInfo.imageLinks) {
+                        let currentAuthor = '';
+                        if(!google_data[index].volumeInfo.authors) {
+                            currentAuthor = 'Author not available';
+                        } else {
+                            currentAuthor = google_data[index].volumeInfo.authors[0];
+                        }
                         $('.cover-select-content').append( `<div class="book-cover" key=${google_data[index].id}>
-                       
 
                         <img src='https://www.wonderslate.com/assets/booksmojo/img_cover_placeholder.png' alt="book cover" />
                         <p>${google_data[index].volumeInfo.title}</p>
-                        <p>${google_data[index].volumeInfo.authors[0]}</p>
+                        <p>${currentAuthor}</p>
                     </div>`);
                     } else {
+                        let currentAuthor = '';
+                        if(!google_data[index].volumeInfo.authors) {
+                            currentAuthor = 'Author not available';
+                        } else {
+                            currentAuthor = google_data[index].volumeInfo.authors[0];
+                        }
                     $('.cover-select-content').append( `<div class="book-cover" key=${google_data[index].id}>
                                                 
 
                                                     <img class="book-image" src=${google_data[index].volumeInfo.imageLinks.thumbnail} alt="book cover" />
                                                     <p class="book-title">${google_data[index].volumeInfo.title}</p>
-                                                    <p class="book-author">${google_data[index].volumeInfo.authors[0]}</p>
+                                                    <p class="book-author">${currentAuthor}</p>
                                                 </div>`);
                         }
                     });        
@@ -137,8 +150,11 @@ function getCoverAndData() {
             
             activeTitle=$(this).find('.book-title').text();
             activeAuthor=$(this).find('.book-author').text();
-            activeImage=$(this).find('.book-image').attr('src');
+            let rawImage=$(this).find('.book-image').attr('src');
+            let processedImage=rawImage.slice(4, rawImage.length);
+            activeImage=`https${processedImage}`
 
+            console.log(activeImage);
             return(activeTitle, activeAuthor, activeImage);
             
     });
@@ -163,7 +179,7 @@ function saveBook() {
         $.ajax({
                 url: WEB_API_URL,
                 type: "POST",
-                data: bookObj,
+                data: JSON.stringify(bookObj),
                 contentType: "application/json",
                 complete: $('.book-list').prepend(
                                                     `<div class="book" aria-live="assertive">
