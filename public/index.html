@@ -13,11 +13,39 @@
 </head>
 
 <body>
-    <div class="mega-container">
-        <div class="fixed-background">
-            <section role="region" class="landing">
+<!-- Landing page -->
+
+    <div class="login-page">
+        <h1 class="heading">Wishful Reading</h1>
+        <br>
+        <p class="login-tag">Keep track of books you want to read</p>
+        <div class="logo-container">
+            <img class="login-logo" src="./resources/wish_logo.png" alt="logo"/>
+        </div>
+        <div class="description">
+            <p class="directions"></p>
+        </div>
+        <form class="login-form" action="#">
+            <div class="input-container">
+                <p class="demo-info">Demo the app: demo / demo</p>
+                <br>
+                <label for="username">Username</label>
+                <input id="user" type="text" max="30" name="username" />
+                <br><br>
+                <label for="password" class="pass-label">Password</label>
+                <input id="pass" type="text" max="30" name="password" />
+                <br><br>
+                <p class="login-error"></p>
+                <br>
+                <button class="login-submit" type="submit">LOGIN</button> 
+            </div>
+        </form>
+    </div>
 
 <!-- Home Page Add Book-->
+    <div class="mega-container">
+            <div class="fixed-background">
+            <section role="region" class="landing hide">
                 <div class='grid-container'>
                     <div class="logo-container">
                         <h1 class="app-name">Wishful Reading</h1>

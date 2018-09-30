@@ -198,7 +198,7 @@ function saveBook() {
             "author": activeAuthor,
             "image": activeImage
         };
-        
+
         $.ajax({
                 url: WEB_API_URL,
                 type: "POST",
@@ -266,6 +266,9 @@ function editButtonHandler() {
         $('.data-modify-modal').addClass('hide');
         $('.edit-btn').prop('disabled', false);
         $('.del-btn').prop('disabled', false);
+        $("html, body").animate({
+            scrollTop: $("body").offset().top
+        }, 1000);
     });
 }
 
@@ -355,12 +358,33 @@ function deletButtonHandler() {
             $('.delete-confirm-modal').addClass('hide');
             $('.edit-btn').prop('disabled', false);
             $('.del-btn').prop('disabled', false);
+            $("html, body").animate({
+                scrollTop: $("body").offset().top
+            }, 1000);
         })
     })
 }
 
+function login() {
+    $('.login-submit').on('click', function(e) {
+        e.preventDefault();
+
+        if($('#user').val().trim() === '' || $('#pass').val().trim() === '' ) {
+            $('.login-error').text('Username or Password MISSING. Please try again.');
+        } else if ($('#user').val().trim() !== 'demo' || $('#pass').val().trim() !== 'demo') {
+            $('.login-error').text('Username or Password INCORRECT. Please try again.');
+        } else {
+            $('.login-page').addClass('hide');
+            $('.landing').removeClass('hide');
+            $("html, body").animate({
+                scrollTop: $("body").offset().top
+            }, 1000);
+        }
+    });
+}
 
 function appLoad() {
+    $(login);
     $(getAllBooks);
     $(addButtonHandler);
     $(handleBookSearch);
