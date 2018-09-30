@@ -49,8 +49,8 @@ body {
 .heading {
     background-color: rgba(255,255,255,0.7);
     border-radius: 1em;
-    font-size: 260%;
-    width: 85%;
+    font-size: 230%;
+    width: 95%;
     max-width: 400px;
     margin-right: auto;
     margin-left: auto;
@@ -147,8 +147,8 @@ body {
 .app-name {
     background-color: rgba(255,255,255,0.7);
     border-radius: 1em;
-    font-size: 260%;
-    width: 85%;
+    font-size: 230%;
+    width: 95%;
     margin-right: auto;
     margin-left: auto;
     padding: .25em;
